@@ -1,0 +1,26 @@
+<p>
+  coder works!
+</p>
+
+
+<div>
+  <p>Podaj stopień wielomiany słowa h(x):</p>
+  <input type="range" min="0" max="10" [(ngModel)]="hx" (change)="setInputsHx()">
+  <p>{{ hx }}</p>
+  <div class="binaryInputs">
+    <input *ngFor="let inputs of collectionHx" class="hxword" type="number" min="0" max="1">
+  </div>
+
+</div>
+
+<div>
+  <p>Podaj stopień wielomiany słowa g(x):</p>
+  <input type="range" min="0" max="10" [(ngModel)]="gx" (change)="setInputsGx()">
+  <p>{{ gx }}</p>
+  <div class="binaryInputs">
+    <input *ngFor="let inputs of collectionGx" class="gxword" type="number" min="0" max="1">
+    <input id="lastgxword" [disabled]="true" type="number" value="1">
+  </div>
+</div>
+
+<input type="submit" value="Rozpocznij" (click)="checkInputs()"/>
