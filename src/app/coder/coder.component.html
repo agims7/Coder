@@ -3,60 +3,26 @@
 </p>
 
 
-<!--<div>
-  <p>Podaj stopień wielomiany słowa h(x):</p>
-  <input type="range" min="0" max="10" [(ngModel)]="hx" (change)="setInputsHx()">
-  <p>{{ hx }}</p>
-  <div class="binaryInputs">
-    <input *ngFor="let inputs of collectionHx" class="hxword" type="number" min="0" max="1">
-  </div>
 
-</div>
 
-<div>
-  <p>Podaj stopień wielomiany słowa g(x):</p>
-  <input type="range" min="0" max="10" [(ngModel)]="gx" (change)="setInputsGx()">
-  <p>{{ gx }}</p>
-  <div class="binaryInputs">
-    <input *ngFor="let inputs of collectionGx" class="gxword" type="number" min="0" max="1">
-    <input id="lastgxword" [disabled]="true" type="number" value="1">
-  </div>
-</div>
 
-<input type="submit" value="Rozpocznij" (click)="checkInputs()" />
--->
-<!--
-  <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
-
-  <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope1" name="selectedBinaryScope1" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
-
-    <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope2" name="selectedBinaryScope2" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
-
-    <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope3" name="selectedBinaryScope3" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>-->
+<p>Podaj stopień wielomiany słowa h(x):</p>
 
 <span class="range" *ngFor="let range of binaryRange; let j = index">
-
+  <span class="bit">BIT: {{ binaryRange[j] + 1 }}</span>
   <span class="states" *ngFor="let binaryState of binaryScope; let i = index">
-
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope[j]" name="selectedBinaryScope{{ j }}" type="radio" value="{{ i }}"/>
-      
-      <label for="binaryState{{ i }}">State: {{ binaryState }}</label>
-  </span>
-  binaryRange: {{ binaryRange[j] }}
+      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope[j]" name="selectedBinaryScope{{ j }}" type="radio" value="{{ i }}"/>    
+      <label for="binaryState{{ i }}">{{ binaryState }}</label>
+  </span> 
 </span>
 
-<p *ngFor="let item of selectedBinaryScope; let x = index">
- selectedBinaryScope{{x}}----> {{item}}
-</p>
+<button type="submit" (click)="calculate()">Oblicz</button>
+
+<div [hidden]="!visibility" class="hxSection">
+<p>Słowo h(x):</p>
+<div class="hxcodes">
+<span class="hxcode" *ngFor="let item of selectedBinaryScope; let x = index">
+  {{item}}
+  </span>
+</div>
+</div>
