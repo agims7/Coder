@@ -13,16 +13,7 @@ export class CoderComponent implements OnInit {
 
   private binaryScope: string[] = ['0', '1'];
   private binaryRange= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  private selectedBinaryScope0 = '0';
-  private selectedBinaryScope1 = 0;
-  private selectedBinaryScope2 = 0;
-  private selectedBinaryScope3 = 0;
-  private selectedBinaryScope4 = 0;
-  private selectedBinaryScope5 = 0;
-  private selectedBinaryScope6 = 0;
-  private selectedBinaryScope7 = 0;
-  private selectedBinaryScope8 = 0;
-  private selectedBinaryScope9 = 0;
+  private selectedBinaryScope = ["0", "0", "0", "0", "0","0", "0", "0", "0", "0"];
 
 
   constructor() { }
@@ -40,9 +31,6 @@ export class CoderComponent implements OnInit {
   //   }
   // }
 
-  changeState() {
-    console.log('this.selectedBinaryScope0', this.selectedBinaryScope0);
-  }
 
   ngOnInit() {
     // this.setInputsHx();

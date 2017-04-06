@@ -25,53 +25,38 @@
 
 <input type="submit" value="Rozpocznij" (click)="checkInputs()" />
 -->
-
+<!--
   <span *ngFor="let binaryState of binaryScope; let i = index">
       <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
       <label for="binaryState{{ i }}">{{ binaryState }}</label>
   </span>
 
   <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
+      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope1" name="selectedBinaryScope1" type="radio" value="{{ i }}" (click)="changeState(i)"/>
       <label for="binaryState{{ i }}">{{ binaryState }}</label>
   </span>
 
     <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
+      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope2" name="selectedBinaryScope2" type="radio" value="{{ i }}" (click)="changeState(i)"/>
       <label for="binaryState{{ i }}">{{ binaryState }}</label>
   </span>
 
     <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
+      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope3" name="selectedBinaryScope3" type="radio" value="{{ i }}" (click)="changeState(i)"/>
       <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
+  </span>-->
 
-    <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
+<span class="range" *ngFor="let range of binaryRange; let j = index">
 
-    <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
+  <span class="states" *ngFor="let binaryState of binaryScope; let i = index">
 
-    <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
+      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope[j]" name="selectedBinaryScope{{ j }}" type="radio" value="{{ i }}"/>
+      
+      <label for="binaryState{{ i }}">State: {{ binaryState }}</label>
   </span>
+  binaryRange: {{ binaryRange[j] }}
+</span>
 
-    <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
-
-    <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
-
-    <span *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScope0" name="selectedBinaryScope0" type="radio" value="{{ i }}" (click)="changeState(i)"/>
-      <label for="binaryState{{ i }}">{{ binaryState }}</label>
-  </span>
+<p *ngFor="let item of selectedBinaryScope; let x = index">
+ selectedBinaryScope{{x}}----> {{item}}
+</p>
