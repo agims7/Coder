@@ -19,7 +19,9 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/font-awesome/css/font-awesome.min.css",
         "styles.less"
+        
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

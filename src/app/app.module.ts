@@ -7,9 +7,11 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CoderComponent } from './coder/coder.component';
+import { GraphComponent } from './graph/graph.component';
 
 let appRoutes = [
   { path: 'coder', component: CoderComponent },
+  { path: 'graph', component: GraphComponent },
   { path: '', component: CoderComponent },
 ];
 
@@ -19,7 +21,8 @@ const routes: Routes = appRoutes;
   declarations: [
     AppComponent,
     NavbarComponent,
-    CoderComponent
+    CoderComponent,
+    GraphComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
