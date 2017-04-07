@@ -9,24 +9,54 @@ body {
     padding: 50px;
 }
 
-.states {
-    // margin: 0 5px;
+.title {
+    margin: 15px 0;
 }
 
-.bit {
-    margin: 0 15px;
-}
-
-.range {
-    display: block;
-    margin: 10px 0;
-}
-
-.hxcodes {
+.bitInputs {
+    border-top: 1px solid black;
+    margin: 20px 0;
+    padding: 13px 0;
     display: flex;
-    .hxcode {
-        width: 20px;
-        border: 1px solid black;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    .range {
+        display: inline-block;
+        width: 60px;
         text-align: center;
+        margin: 2px 0px;
+        padding: 0 15px;
+        border-left: 1px solid black;
+        &:last-of-type {
+            border-left: none;
+        }
+        .bit {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.submit {
+    margin: 15px 0;
+}
+
+.hxSection,
+.gxSection {
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    .hxcodes,
+    .gxcodes {
+        margin: 5px 0;
+        display: flex;
+        flex-direction: row-reverse;
+        .hxcode,
+        .gxcode {
+            width: 20px;
+            border: 1px solid black;
+            text-align: center;
+        }
     }
 }
