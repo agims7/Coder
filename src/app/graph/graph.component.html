@@ -1,17 +1,21 @@
-<div class=graph>
+  <button class="nextTact" type="submit" (click)="nextTact()">Takt +1</button>
 
-<span class="fa fa-arrow-right icon1"></span>
 
-<span class="fa fa-plus-square-o icon2"></span>
-
-<span class="fa fa-arrow-down icon3"></span>
-
-<span class="fa fa-arrow-right icon4"></span>
-
-<div class="icon5">Go</div>
-
-<span class="fa fa-arrow-down icon6"></span>
-
-<span class="fa fa-arrow-right icon7"></span>
-
-</div>
+<table>
+    <tr>
+        <th>Takt</th>
+        <th>Wejście</th>
+        <th>P0</th>
+        <th>P1</th>
+        <th>P2</th>
+        <th>Wyjście</th>
+    </tr>
+    <tr>
+        <td>{{ tactsService.tactActive }}</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+    </tr>
+</table>

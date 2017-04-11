@@ -9,6 +9,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CoderComponent } from './coder/coder.component';
 import { GraphComponent } from './graph/graph.component';
 
+import { TactsService } from './services/tacts.service';
+
 let appRoutes = [
   { path: 'coder', component: CoderComponent },
   { path: 'graph', component: GraphComponent },
@@ -31,7 +33,9 @@ const routes: Routes = appRoutes;
     HttpModule
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [
+    TactsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

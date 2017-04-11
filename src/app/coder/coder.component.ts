@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TactsService } from '../services/tacts.service';
+
 
 @Component({
   selector: 'app-coder',
@@ -16,7 +18,9 @@ export class CoderComponent implements OnInit {
   private polynomialGxRange = [];
   private selectedBinaryScopeGx = [];
 
-  constructor() { }
+  constructor(
+    private tactsService: TactsService
+  ) { }
 
   calculate() {
   }
@@ -38,21 +42,33 @@ export class CoderComponent implements OnInit {
     }
   }
 
+  check() {
+    console.log('selectedBinaryScopeHx ', this.selectedBinaryScopeHx);
+    console.log('selectedBinaryScopeGx ', this.selectedBinaryScopeGx);
+  }
+
   updateHxScope() {
     this.selectedBinaryScopeHx = [];
     this.polynomialHxRange = [];
     this.iteratePolynomial(this.polynomialHx, this.selectedBinaryScopeHx, this.polynomialHxRange);
+    this.tactsService.tacts = (this.polynomialHx - 1) + (this.polynomialGx - 1);
+    console.log('selectedBinaryScopeHx ', this.selectedBinaryScopeHx)
+
   }
 
   updateGxScope() {
     this.selectedBinaryScopeGx = [];
     this.polynomialGxRange = [];
     this.iteratePolynomial(this.polynomialGx, this.selectedBinaryScopeGx, this.polynomialGxRange);
+    this.tactsService.tacts = (this.polynomialHx - 1) + (this.polynomialGx - 1);
+    console.log('selectedBinaryScopeGx ', this.selectedBinaryScopeGx)
   }
 
   ngOnInit() {
-     this.updateHxScope();
-     this.updateGxScope();
+    this.updateHxScope();
+    this.updateGxScope();
+    this.tactsService.tacts = (this.polynomialHx - 1) + (this.polynomialGx - 1);
+    // console.log('polynomialHx ', this.polynomialHx, 'polynomialGx ', this.polynomialGx, 'polynomialHxRange ', this.polynomialHxRange, 'polynomialGxRange ', this.polynomialGxRange, 'this.tactsService.tacts ', this.tactsService.tacts);
   }
 
 }
