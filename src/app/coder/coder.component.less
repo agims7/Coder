@@ -36,17 +36,40 @@
 }
 
 .hxSection,
-.gxSection {
+.gxSection,
+.hgxSection {
     width: 250px;
     display: flex;
     flex-wrap: wrap;
     .hxcodes,
-    .gxcodes {
+    .gxcodes,
+    .hgxcodes {
         margin: 5px 0;
         display: flex;
         flex-direction: row-reverse;
         .hxcode,
-        .gxcode {
+        .gxcode,
+        .hgxcode {
+            width: 20px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    }
+}
+
+.polynomialPower {
+    vertical-align: super;
+}
+
+.hgxSection {
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    .hgxcodes {
+        margin: 5px 0;
+        display: flex;
+        flex-direction: row-reverse;
+        .hgxcode {
             width: 20px;
             border: 1px solid black;
             text-align: center;

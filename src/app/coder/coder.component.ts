@@ -11,12 +11,16 @@ export class CoderComponent implements OnInit {
   private maxRange: number = 15;
   private minRange: number = 1;
   private binaryScope: string[] = ['0', '1'];
-  private polynomialHx: number = 6;
+  private polynomialHx: number;
   private polynomialHxRange = [];
   private selectedBinaryScopeHx = [];
-  private polynomialGx: number = 4;
+  private polynomialGx: number;
   private polynomialGxRange = [];
   private selectedBinaryScopeGx = [];
+  private polynomialRatio: number;
+  private polynomialBinaryScopeHGx = [];
+
+  private visibility: boolean = false;
 
   constructor(
     private tactsService: TactsService
@@ -50,23 +54,45 @@ export class CoderComponent implements OnInit {
   updateHxScope() {
     this.selectedBinaryScopeHx = [];
     this.polynomialHxRange = [];
+    this.tactsService.tactActive = 0;
     this.iteratePolynomial(this.polynomialHx, this.selectedBinaryScopeHx, this.polynomialHxRange);
     this.tactsService.tacts = (this.polynomialHx - 1) + (this.polynomialGx - 1);
-    console.log('selectedBinaryScopeHx ', this.selectedBinaryScopeHx)
+    // console.log('selectedBinaryScopeHx ', this.selectedBinaryScopeHx)
 
   }
 
   updateGxScope() {
     this.selectedBinaryScopeGx = [];
     this.polynomialGxRange = [];
+    this.tactsService.tactActive = 0;
     this.iteratePolynomial(this.polynomialGx, this.selectedBinaryScopeGx, this.polynomialGxRange);
     this.tactsService.tacts = (this.polynomialHx - 1) + (this.polynomialGx - 1);
-    console.log('selectedBinaryScopeGx ', this.selectedBinaryScopeGx)
+    // console.log('selectedBinaryScopeGx ', this.selectedBinaryScopeGx)
+  }
+
+  checkPolynomialRatio() {
+    this.visibility = true;
+    this.polynomialRatio = null;
+    this.polynomialBinaryScopeHGx = null;
+    this.polynomialRatio = this.polynomialGx - 1;
+    this.polynomialBinaryScopeHGx = this.copy(this.selectedBinaryScopeHx);
+    for (var i = 0; i < this.polynomialRatio; i++) {
+      this.polynomialBinaryScopeHGx.unshift('0');
+    }
+    // console.log(this.polynomialBinaryScopeHGx);
+  }
+
+  copy(o) {
+    let output, v, key;
+    output = Array.isArray(o) ? [] : {};
+    for (key in o) {
+      v = o[key];
+      output[key] = (typeof v === "object") ? this.copy(v) : v;
+    }
+    return output;
   }
 
   ngOnInit() {
-    this.updateHxScope();
-    this.updateGxScope();
     this.tactsService.tacts = (this.polynomialHx - 1) + (this.polynomialGx - 1);
     // console.log('polynomialHx ', this.polynomialHx, 'polynomialGx ', this.polynomialGx, 'polynomialHxRange ', this.polynomialHxRange, 'polynomialGxRange ', this.polynomialGxRange, 'this.tactsService.tacts ', this.tactsService.tacts);
   }

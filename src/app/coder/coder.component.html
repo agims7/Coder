@@ -15,7 +15,7 @@
     </span>
   </div>
 
-  <div [hidden]="visibility" class="hxSection">
+  <div class="hxSection">
     <p>Słowo h(x):</p>
     <div class="hxcodes">
       <span class="hxcode" *ngFor="let item of selectedBinaryScopeHx; let x = index">
@@ -41,10 +41,22 @@
     </span>
   </div>
 
-  <div [hidden]="visibility" class="gxSection">
+  <div class="gxSection">
     <p>Słowo g(x):</p>
     <div class="gxcodes">
       <span class="gxcode" *ngFor="let item of selectedBinaryScopeGx; let x = index">
+    {{item}}
+    </span>
+    </div>
+  </div>
+
+
+  <button type="submit" (click)="checkPolynomialRatio()">Sprawdz słowo hg(x)</button>
+
+  <div [hidden]="visibility" class="hgxSection">
+    <p>Słowo h<span class="polynomialPower">{{ polynomialRatio }}</span> (x):</p>
+    <div class="hgxcodes">
+      <span class="hgxcode" *ngFor="let item of polynomialBinaryScopeHGx; let x = index">
     {{item}}
     </span>
     </div>
