@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CoderComponent } from './coder/coder.component';
 import { GraphComponent } from './graph/graph.component';
 
+import { AppService } from './services/app.service';
 import { TactsService } from './services/tacts.service';
 
 let appRoutes = [
@@ -34,6 +35,7 @@ const routes: Routes = appRoutes;
   ],
   exports: [RouterModule],
   providers: [
+    AppService,
     TactsService
   ],
   bootstrap: [AppComponent]

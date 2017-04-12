@@ -2,14 +2,14 @@
   <h3 class="title">Ustaw wielomian słowa h(x):</h3>
 
   <h4>Podaj stopień wielomiany h(x):</h4>
-  <input type="number" min="{{minRange}}" max="{{maxRange}}" [(ngModel)]="polynomialHx" value="polynomialHx" (ngModelChange)="updateHxScope()"
+  <input class="firstInput" type="number" min="{{minRange}}" max="{{maxRange}}" [(ngModel)]="appService.polynomialHx" value="polynomialHx" (ngModelChange)="updateHxScope()"
   />
 
   <div class="bitInputs">
-    <span class="range" *ngFor="let range of polynomialHxRange; let j = index">
-  <span class="bit">Bit {{ polynomialHxRange[j] + 1 }}</span>
+    <span class="range" *ngFor="let range of appService.polynomialHxRange; let j = index">
+  <span class="bit">Bit {{ appService.polynomialHxRange[j] + 1 }}</span>
     <span class="states" *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScopeHx[j]" (ngModelChange)="check()" name="selectedBinaryScopeHx{{ j }}" type="radio" value="{{ i }}" />    
+      <input id="binaryState{{ i }}" [(ngModel)]="appService.selectedBinaryScopeHx[j]" (ngModelChange)="check()" name="selectedBinaryScopeHx{{ j }}" type="radio" value="{{ i }}" />    
       <label for="binaryState{{ i }}">{{ binaryState }}</label>
   </span>
     </span>
@@ -18,7 +18,7 @@
   <div class="hxSection">
     <p>Słowo h(x):</p>
     <div class="hxcodes">
-      <span class="hxcode" *ngFor="let item of selectedBinaryScopeHx; let x = index">
+      <span class="hxcode" *ngFor="let item of appService.selectedBinaryScopeHx; let x = index">
     {{item}}
     </span>
     </div>
@@ -28,14 +28,14 @@
   <h3 class="title">Ustaw wielomian słowa g(x):</h3>
 
   <h4>Podaj stopień wielomiany g(x):</h4>
-  <input type="number" min="{{minRange}}" max="{{maxRange}}" [(ngModel)]="polynomialGx" value="polynomialGx" (ngModelChange)="updateGxScope()"
+  <input class="firstInput" type="number" min="{{minRange}}" max="{{maxRange}}" [(ngModel)]="appService.polynomialGx" value="polynomialGx" (ngModelChange)="updateGxScope()"
   />
 
   <div class="bitInputs">
-    <span class="range" *ngFor="let range of polynomialGxRange; let j = index">
-  <span class="bit">Bit {{ polynomialGxRange[j] + 1 }}</span>
+    <span class="range" *ngFor="let range of appService.polynomialGxRange; let j = index">
+  <span class="bit">Bit {{ appService.polynomialGxRange[j] + 1 }}</span>
     <span class="states" *ngFor="let binaryState of binaryScope; let i = index">
-      <input id="binaryState{{ i }}" [(ngModel)]="selectedBinaryScopeGx[j]" name="selectedBinaryScopeGx{{ j }}" type="radio" value="{{ i }}"/>    
+      <input id="binaryState{{ i }}" [(ngModel)]="appService.selectedBinaryScopeGx[j]" name="selectedBinaryScopeGx{{ j }}" type="radio" value="{{ i }}"/>    
       <label for="binaryState{{ i }}">{{ binaryState }}</label>
   </span>
     </span>
@@ -44,7 +44,7 @@
   <div class="gxSection">
     <p>Słowo g(x):</p>
     <div class="gxcodes">
-      <span class="gxcode" *ngFor="let item of selectedBinaryScopeGx; let x = index">
+      <span class="gxcode" *ngFor="let item of appService.selectedBinaryScopeGx; let x = index">
     {{item}}
     </span>
     </div>
@@ -53,10 +53,12 @@
 
   <button type="submit" (click)="checkPolynomialRatio()">Sprawdz słowo hg(x)</button>
 
+  <button type="reset" (click)="resetAll()">Reset</button>
+
   <div [hidden]="visibility" class="hgxSection">
     <p>Słowo h<span class="polynomialPower">{{ polynomialRatio }}</span> (x):</p>
     <div class="hgxcodes">
-      <span class="hgxcode" *ngFor="let item of polynomialBinaryScopeHGx; let x = index">
+      <span class="hgxcode" *ngFor="let item of appService.polynomialBinaryScopeHGx; let x = index">
     {{item}}
     </span>
     </div>
