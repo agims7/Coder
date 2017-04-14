@@ -1,5 +1,4 @@
-  <button class="nextTact" type="submit" (click)="nextTact()">Takt +1</button>
-
+<button [hidden]="buttonDisabled" class="nextTact" type="submit" (click)="nextTact()">Takt +1</button>
 
 <table>
     <tr>
@@ -7,15 +6,13 @@
         <th>Wejście</th>
         <th>P0</th>
         <th>P1</th>
-        <th>P2</th>
         <th>Wyjście</th>
     </tr>
     <tr>
         <td>{{ tactsService.tactActive }}</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
+        <th>{{ appService.input }}</th>
+        <th>{{ P[0] }}</th>
+        <th>{{ P[1] }}</th>
+        <th>{{ output }}</th>
     </tr>
 </table>

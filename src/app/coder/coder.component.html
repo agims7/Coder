@@ -56,7 +56,7 @@
   <button type="reset" (click)="resetAll()">Reset</button>
 
   <div [hidden]="visibility" class="hgxSection">
-    <p>Słowo h<span class="polynomialPower">{{ polynomialRatio }}</span> (x):</p>
+    <p>Słowo h<span class="polynomialPower">{{ polynomialRatioGx }}</span> (x):</p>
     <div class="hgxcodes">
       <span class="hgxcode" *ngFor="let item of appService.polynomialBinaryScopeHGx; let x = index">
     {{item}}

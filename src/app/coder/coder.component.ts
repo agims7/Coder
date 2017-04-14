@@ -12,7 +12,6 @@ export class CoderComponent implements OnInit {
   private maxRange: number = 15;
   private minRange: number = 1;
   private binaryScope: string[] = ['0', '1'];
-  private polynomialRatio: number;
 
   private visibility: boolean = false;
 
@@ -51,8 +50,7 @@ export class CoderComponent implements OnInit {
     this.appService.polynomialHxRange = [];
     this.tactsService.tactActive = 0;
     this.iteratePolynomial(this.appService.polynomialHx, this.appService.selectedBinaryScopeHx, this.appService.polynomialHxRange);
-    this.tactsService.tacts = (this.appService.polynomialHx - 1) + (this.appService.polynomialGx - 1);
-
+    this.setPolynomialRatio();
   }
 
   updateGxScope() {
@@ -60,20 +58,34 @@ export class CoderComponent implements OnInit {
     this.appService.polynomialGxRange = [];
     this.tactsService.tactActive = 0;
     this.iteratePolynomial(this.appService.polynomialGx, this.appService.selectedBinaryScopeGx, this.appService.polynomialGxRange);
-    this.tactsService.tacts = (this.appService.polynomialHx- 1) + (this.appService.polynomialGx - 1);
+    this.setPolynomialRatio();
+  }
+
+  setPolynomialRatio() {
+    this.appService.polynomialRatioHx = this.appService.selectedBinaryScopeHx.lastIndexOf('1');
+    if (this.appService.polynomialRatioHx < 1) {
+      this.appService.polynomialRatioHx = 0
+    }
+    this.appService.polynomialRatioGx = this.appService.selectedBinaryScopeGx.lastIndexOf('1');
+    if (this.appService.polynomialRatioGx < 1) {
+      this.appService.polynomialRatioGx = 0
+    }
+        this.tactsService.tacts = this.appService.polynomialRatioHx + this.appService.polynomialRatioGx + 1;
+        // TO TRZEBA SPRAWDZIC!!!!
   }
 
   checkPolynomialRatio() {
     this.visibility = true;
-    this.polynomialRatio = null;
+    this.appService.polynomialRatioHx = null;
+    this.appService.polynomialRatioGx = null;
     this.appService.polynomialBinaryScopeHGx = null;
-    this.polynomialRatio = this.appService.selectedBinaryScopeGx.lastIndexOf('1');
-    if (this.polynomialRatio < 1) {
-      this.polynomialRatio = 0
-    }
+    this.setPolynomialRatio();
     this.appService.polynomialBinaryScopeHGx = this.copy(this.appService.selectedBinaryScopeHx);
-    for (var i = 0; i < this.polynomialRatio; i++) {
+    for (var i = 0; i < this.appService.polynomialRatioGx; i++) {
       this.appService.polynomialBinaryScopeHGx.unshift('0');
+    }
+    while (this.appService.polynomialBinaryScopeHGx[this.appService.polynomialBinaryScopeHGx.length -1] === '0') {
+      this.appService.polynomialBinaryScopeHGx.pop();
     }
     console.log('polynomialHx ', this.appService.polynomialHx)
     console.log('polynomialGx ', this.appService.polynomialGx)
@@ -82,9 +94,9 @@ export class CoderComponent implements OnInit {
     console.log('selectedBinaryScopeHx ', this.appService.selectedBinaryScopeHx)
     console.log('selectedBinaryScopeGx ', this.appService.selectedBinaryScopeGx)
     console.log('polynomialBinaryScopeHGx ', this.appService.polynomialBinaryScopeHGx)
-    console.log('this.polynomialRatio ', this.polynomialRatio);
+    console.log('this.appService.polynomialRatioHx ', this.appService.polynomialRatioHx);
+    console.log('this.appService.polynomialRatioGx ', this.appService.polynomialRatioGx);
     console.log('this.tactsService.tacts ', this.tactsService.tacts)
-
   }
 
   copy(o) {
@@ -118,7 +130,8 @@ export class CoderComponent implements OnInit {
     console.log('selectedBinaryScopeHx ', this.appService.selectedBinaryScopeHx)
     console.log('selectedBinaryScopeGx ', this.appService.selectedBinaryScopeGx)
     console.log('polynomialBinaryScopeHGx ', this.appService.polynomialBinaryScopeHGx)
-    console.log('this.polynomialRatio ', this.polynomialRatio);
+    console.log('this.appService.polynomialRatioHx ', this.appService.polynomialRatioHx);
+    console.log('this.appService.polynomialRatioGx ', this.appService.polynomialRatioGx);
     console.log('this.tactsService.tacts ', this.tactsService.tacts)
   }
 
