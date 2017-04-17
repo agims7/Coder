@@ -12,7 +12,7 @@ export class AppService {
   public polynomialRatioHx: number;
   public polynomialRatioGx: number;
 
-  public input: string  = '0';
+  public input: any = 0;
 
   constructor() { }
 
