@@ -9,7 +9,7 @@ import { AppService } from '../services/app.service';
   styleUrls: ['./coder.component.less']
 })
 export class CoderComponent implements OnInit {
-  private maxRange: number = 15;
+  private maxRange: number = 10;
   private minRange: number = 1;
   private binaryScope: string[] = ['0', '1'];
 
