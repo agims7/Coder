@@ -9,8 +9,10 @@ import { AppService } from '../services/app.service';
   styleUrls: ['./coder.component.less']
 })
 export class CoderComponent implements OnInit {
-  private maxRange: number = 4;
-  private minRange: number = 2;
+  private maxHxRange: number = 10;
+  private minHxRange: number = 2;
+  private maxGxRange: number = 5;
+  private minGxRange: number = 2;
   private binaryScope: string[] = ['0', '1'];
 
   private visibility: boolean = false;
@@ -22,12 +24,29 @@ export class CoderComponent implements OnInit {
 
 
 
-  iteratePolynomial(polynomial, scope, range) {
-    if (polynomial > this.maxRange) {
+  iterateHxPolynomial(polynomial, scope, range) {
+    if (polynomial > this.maxHxRange) {
       polynomial = 0;
       range = [];
       scope = [];
-    } else if (polynomial < this.minRange) {
+    } else if (polynomial < this.minHxRange) {
+      polynomial = 0;
+      range = [];
+      scope = [];
+    } else {
+      for (var i = 0; i < polynomial; i++) {
+        scope.push('0');
+        range.push(i);
+      }
+    }
+  }
+
+  iterateGxPolynomial(polynomial, scope, range) {
+    if (polynomial > this.maxGxRange) {
+      polynomial = 0;
+      range = [];
+      scope = [];
+    } else if (polynomial < this.minGxRange) {
       polynomial = 0;
       range = [];
       scope = [];
@@ -48,7 +67,7 @@ export class CoderComponent implements OnInit {
     this.appService.selectedBinaryScopeHx = [];
     this.appService.polynomialHxRange = [];
     this.tactsService.tactActive = 0;
-    this.iteratePolynomial(this.appService.polynomialHx, this.appService.selectedBinaryScopeHx, this.appService.polynomialHxRange);
+    this.iterateHxPolynomial(this.appService.polynomialHx, this.appService.selectedBinaryScopeHx, this.appService.polynomialHxRange);
     this.setPolynomialRatio();
   }
 
@@ -56,7 +75,7 @@ export class CoderComponent implements OnInit {
     this.appService.selectedBinaryScopeGx = [];
     this.appService.polynomialGxRange = [];
     this.tactsService.tactActive = 0;
-    this.iteratePolynomial(this.appService.polynomialGx, this.appService.selectedBinaryScopeGx, this.appService.polynomialGxRange);
+    this.iterateGxPolynomial(this.appService.polynomialGx, this.appService.selectedBinaryScopeGx, this.appService.polynomialGxRange);
     this.setPolynomialRatio();
   }
 

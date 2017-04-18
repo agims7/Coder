@@ -18,6 +18,7 @@ export class GraphComponent implements OnInit {
   private sequencex1: any;
   private sequencex2: any;
   private sequencex3: any;
+  private sequencex4: any;
 
   constructor(
     private tactsService: TactsService,
@@ -52,14 +53,12 @@ export class GraphComponent implements OnInit {
             this.output = this.P[0];
             break;
         }
-        // this.output = this.P[0];
       }
       ///////////////////////
 
       //DLA 3 STOPNIA g(x) czyli x^2
       if (this.appService.polynomialRatioGx === 2) {
         console.log('RATIO 2');
-        this.P[1] = parseInt(this.P[0]);
         if (this.appService.selectedBinaryScopeGx[1] === '1') {
           this.sequencex2 = "111"
         } else {
@@ -68,7 +67,7 @@ export class GraphComponent implements OnInit {
 
         switch (this.sequencex2) {
           case "111":
-          console.log('case 111');
+            console.log('case 111');
             if (diff < this.tactsService.tactActive) {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum1 = parseInt(this.oldOutput) + this.P[0];
@@ -87,14 +86,16 @@ export class GraphComponent implements OnInit {
                 this.P[0] = 0;
               }
             } else {
+              this.P[1] = parseInt(this.P[0]);
               this.P[0] = parseInt(this.appService.input);
             }
             this.output = this.P[1];
             break;
           case "101":
-          console.log('case 101');
+            console.log('case 101');
             if (diff < this.tactsService.tactActive) {
               let sum = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              this.P[1] = parseInt(this.P[0]);
               if (sum > 1) {
                 this.P[0] = 0;
               } else if (sum == 1) {
@@ -103,20 +104,18 @@ export class GraphComponent implements OnInit {
                 this.P[0] = 0;
               }
             } else {
+              this.P[1] = parseInt(this.P[0]);
               this.P[0] = parseInt(this.appService.input);
             }
             this.output = this.P[1];
             break;
         }
-
-        // this.output = this.P[1];
       }
       ///////////////////////////
 
       //DLA 4 STOPNIA g(x) czyli x^3
       if (this.appService.polynomialRatioGx === 3) {
         console.log('RATIO 3');
-        this.P[2] = parseInt(this.P[1]);
         if (this.appService.selectedBinaryScopeGx[2] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
           this.sequencex3 = "1111"
         } else if (this.appService.selectedBinaryScopeGx[2] === '1') {
@@ -129,7 +128,7 @@ export class GraphComponent implements OnInit {
 
         switch (this.sequencex3) {
           case "1111":
-          console.log('case 1111');
+            console.log('case 1111');
             if (diff < this.tactsService.tactActive) {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum1 = parseInt(this.oldOutput) + this.P[0];
@@ -156,42 +155,18 @@ export class GraphComponent implements OnInit {
                 this.P[0] = 0;
               }
             } else {
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
-            }
-            this.output = this.P[2];
-            break;
-          case "1101":
-          console.log('case 1101');
-            if (diff < this.tactsService.tactActive) {
-              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
-              let sum2 = parseInt(this.oldOutput) + this.P[1];
-              if (sum2 > 1) {
-                this.P[2] = 0;
-              } else if (sum2 == 1) {
-                this.P[2] = 1;
-              } else {
-                this.P[2] = 0;
-              }
-              this.P[1] = parseInt(this.P[0]);
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
-            } else {
+              this.P[2] = parseInt(this.P[1]);
               this.P[1] = parseInt(this.P[0]);
               this.P[0] = parseInt(this.appService.input);
             }
             this.output = this.P[2];
             break;
           case "1011":
-          console.log('case 1011');
+            console.log('case 1011');
             if (diff < this.tactsService.tactActive) {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum1 = parseInt(this.oldOutput) + this.P[0];
+              this.P[2] = parseInt(this.P[1]);
               if (sum1 > 1) {
                 this.P[1] = 0;
               } else if (sum1 == 1) {
@@ -207,17 +182,45 @@ export class GraphComponent implements OnInit {
                 this.P[0] = 0;
               }
             } else {
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[2];
+            break;
+          case "1101":
+            console.log('case 1101');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              if (sum2 > 1) {
+                this.P[2] = 0;
+              } else if (sum2 == 1) {
+                this.P[2] = 1;
+              } else {
+                this.P[2] = 0;
+              }
+              this.P[1] = parseInt(this.P[0]);
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[2] = parseInt(this.P[1]);
               this.P[1] = parseInt(this.P[0]);
               this.P[0] = parseInt(this.appService.input);
             }
             this.output = this.P[2];
             break;
           case "1001":
-          console.log('case 1001');
+            console.log('case 1001');
             if (diff < this.tactsService.tactActive) {
-              this.P[1] = parseInt(this.P[0]);
-              console.log('mniej niz diff');
               let sum = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
               if (sum > 1) {
                 this.P[0] = 0;
               } else if (sum == 1) {
@@ -226,14 +229,301 @@ export class GraphComponent implements OnInit {
                 this.P[0] = 0;
               }
             } else {
+              this.P[2] = parseInt(this.P[1]);
               this.P[1] = parseInt(this.P[0]);
               this.P[0] = parseInt(this.appService.input);
             }
             this.output = this.P[2];
             break;
         }
+      }
+      ///////////////////////////
 
-        // this.output = this.P[2];
+      //DLA 5 STOPNIA g(x) czyli x^4
+      if (this.appService.polynomialRatioGx === 4) {
+        console.log('RATIO 4');
+        if (this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[2] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex4 = "11111"
+        } else if (this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[2] === '1') {
+          this.sequencex4 = "11101"
+        } else if (this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex4 = "11011"
+        } else if (this.appService.selectedBinaryScopeGx[2] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex4 = "10111"
+        } else if (this.appService.selectedBinaryScopeGx[3] === '1') {
+          this.sequencex4 = "11001"
+        } else if (this.appService.selectedBinaryScopeGx[2] === '1') {
+          this.sequencex4 = "10101"
+        } else if (this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex4 = "10011"
+        } else {
+          this.sequencex4 = "10001"
+        }
+
+        switch (this.sequencex4) {
+          case "11111":
+            console.log('case 11111');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              if (sum3 > 1) {
+                this.P[3] = 0;
+              } else if (sum3 == 1) {
+                this.P[3] = 1;
+              } else {
+                this.P[3] = 0;
+              }
+              if (sum2 > 1) {
+                this.P[2] = 0;
+              } else if (sum2 == 1) {
+                this.P[2] = 1;
+              } else {
+                this.P[2] = 0;
+              }
+              if (sum1 > 1) {
+                this.P[1] = 0;
+              } else if (sum1 == 1) {
+                this.P[1] = 1;
+              } else {
+                this.P[1] = 0;
+              }
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[3];
+            break;
+          case "11101":
+            console.log('case 11101');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              if (sum3 > 1) {
+                this.P[3] = 0;
+              } else if (sum3 == 1) {
+                this.P[3] = 1;
+              } else {
+                this.P[3] = 0;
+              }
+              if (sum2 > 1) {
+                this.P[2] = 0;
+              } else if (sum2 == 1) {
+                this.P[2] = 1;
+              } else {
+                this.P[2] = 0;
+              }
+
+              this.P[1] = this.P[0];
+
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[3];
+            break;
+          case "11011":
+            console.log('case 11011');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              if (sum3 > 1) {
+                this.P[3] = 0;
+              } else if (sum3 == 1) {
+                this.P[3] = 1;
+              } else {
+                this.P[3] = 0;
+              }
+              this.P[2] = this.P[1];
+              if (sum1 > 1) {
+                this.P[1] = 0;
+              } else if (sum1 == 1) {
+                this.P[1] = 1;
+              } else {
+                this.P[1] = 0;
+              }
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[3];
+            break;
+          case "10111":
+            console.log('case 10111');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              this.P[3] = this.P[2];
+              if (sum2 > 1) {
+                this.P[2] = 0;
+              } else if (sum2 == 1) {
+                this.P[2] = 1;
+              } else {
+                this.P[2] = 0;
+              }
+              if (sum1 > 1) {
+                this.P[1] = 0;
+              } else if (sum1 == 1) {
+                this.P[1] = 1;
+              } else {
+                this.P[1] = 0;
+              }
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[3];
+            break;
+          case "11001":
+            console.log('case 11001');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              if (sum3 > 1) {
+                this.P[3] = 0;
+              } else if (sum3 == 1) {
+                this.P[3] = 1;
+              } else {
+                this.P[3] = 0;
+              }
+              this.P[2] = this.P[1];
+              this.P[1] = parseInt(this.P[0]);
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[3];
+            break;
+          case "10101":
+            console.log('case 10101');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              this.P[3] = this.P[2];
+              if (sum2 > 1) {
+                this.P[2] = 0;
+              } else if (sum2 == 1) {
+                this.P[2] = 1;
+              } else {
+                this.P[2] = 0;
+              }
+              this.P[1] = parseInt(this.P[0]);
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[3];
+            break;
+          case "10011":
+            console.log('case 10011');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[1];
+              this.P[3] = this.P[2];
+              this.P[2] = this.P[1];
+              if (sum1 > 1) {
+                this.P[1] = 0;
+              } else if (sum1 == 1) {
+                this.P[1] = 1;
+              } else {
+                this.P[1] = 0;
+              }
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[3];
+            break;
+          case "10001":
+            console.log('case 10001');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              this.P[3] = this.P[2];
+              this.P[2] = this.P[1];
+              this.P[1] = this.P[0];
+              if (sum0 > 1) {
+                this.P[0] = 0;
+              } else if (sum0 == 1) {
+                this.P[0] = 1;
+              } else {
+                this.P[0] = 0;
+              }
+            } else {
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.P[0] = parseInt(this.appService.input);
+            }
+            this.output = this.P[3];
+            break;
+        }
       }
       ///////////////////////////
 

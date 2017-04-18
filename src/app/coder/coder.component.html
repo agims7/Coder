@@ -2,7 +2,7 @@
   <h3 class="title">Ustaw wielomian informacyjny h(x):</h3>
 
   <h4>Podaj stopień wielomianu informacyjnego h(x):</h4>
-  <input class="firstInput" type="number" min="{{minRange}}" max="{{maxRange}}" [(ngModel)]="appService.polynomialHx" value="polynomialHx"
+  <input class="firstInput" type="number" min="{{minHxRange}}" max="{{maxHxRange}}" [(ngModel)]="appService.polynomialHx" value="polynomialHx"
     (ngModelChange)="updateHxScope()" />
 
   <div class="bitInputs">
@@ -28,7 +28,7 @@
   <h3 class="title">Ustaw wielomian generujący g(x):</h3>
 
   <h4>Podaj stopień wielomianu generujacego g(x):</h4>
-  <input class="firstInput" type="number" min="{{minRange}}" max="{{maxRange}}" [(ngModel)]="appService.polynomialGx" value="polynomialGx"
+  <input class="firstInput" type="number" min="{{minGxRange}}" max="{{maxGxRange}}" [(ngModel)]="appService.polynomialGx" value="polynomialGx"
     (ngModelChange)="updateGxScope()" />
 
   <div class="bitInputs">
