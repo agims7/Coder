@@ -11,7 +11,7 @@ import { AppService } from '../services/app.service';
 export class CoderComponent implements OnInit {
   private maxHxRange: number = 10;
   private minHxRange: number = 2;
-  private maxGxRange: number = 5;
+  private maxGxRange: number = 6;
   private minGxRange: number = 2;
   private binaryScope: string[] = ['0', '1'];
 

@@ -72,6 +72,29 @@
     </tr>
 </table>
 
+<table *ngIf="appService.polynomialRatioGx === 5">
+    <tr>
+        <th>Takt</th>
+        <th>Wejście</th>
+        <th>P0</th>
+        <th>P1</th>
+        <th>P2</th>
+        <th>P3</th>
+        <th>P4</th>
+        <th>Wyjście</th>
+    </tr>
+    <tr>
+        <td>{{ tactsService.tactActive }}</td>
+        <th>{{ appService.input }}</th>
+        <th>{{ P[0] }}</th>
+        <th>{{ P[1] }}</th>
+        <th>{{ P[2] }}</th>
+        <th>{{ P[3] }}</th>
+        <th>{{ P[4] }}</th>
+        <th>{{ output }}</th>
+    </tr>
+</table>
+
   <div *ngIf="visibility" class="cxSection">
     <p>Wielomian kodowy c(x):</p>
     <div class="cxcodes">

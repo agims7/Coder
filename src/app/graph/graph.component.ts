@@ -19,11 +19,48 @@ export class GraphComponent implements OnInit {
   private sequencex2: any;
   private sequencex3: any;
   private sequencex4: any;
+  private sequencex5: any;
 
   constructor(
     private tactsService: TactsService,
     private appService: AppService
   ) { }
+
+  setSeq5() {
+    this.P[4] = parseInt(this.P[3]);
+    this.P[3] = parseInt(this.P[2]);
+    this.P[2] = parseInt(this.P[1]);
+    this.P[1] = parseInt(this.P[0]);
+    this.P[0] = parseInt(this.appService.input);
+  }
+
+  setSeq4() {
+    this.P[3] = parseInt(this.P[2]);
+    this.P[2] = parseInt(this.P[1]);
+    this.P[1] = parseInt(this.P[0]);
+    this.P[0] = parseInt(this.appService.input);
+  }
+
+  setSeq3() {
+    this.P[2] = parseInt(this.P[1]);
+    this.P[1] = parseInt(this.P[0]);
+    this.P[0] = parseInt(this.appService.input);
+  }
+
+  setSeq2() {
+    this.P[1] = parseInt(this.P[0]);
+    this.P[0] = parseInt(this.appService.input);
+  }
+
+
+  checkSum(sum, i) {
+    if (sum > 1) {
+    this.P[i] = 0;
+    } else if (sum == 1) {
+    this.P[i] = 1;
+    } else { this.P[i] = 0; }
+  }
+
 
   nextTact() {
     if (this.tactsService.tactActive <= this.tactsService.tacts) {
@@ -41,14 +78,8 @@ export class GraphComponent implements OnInit {
         switch (sequence1) {
           case "11":
             if (diff < this.tactsService.tactActive) {
-              let sum = parseInt(this.oldOutput) + parseInt(this.appService.input);
-              if (sum > 1) {
-                this.P[0] = 0;
-              } else if (sum == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              this.checkSum(sum0, 0);;
             }
             this.output = this.P[0];
             break;
@@ -71,41 +102,21 @@ export class GraphComponent implements OnInit {
             if (diff < this.tactsService.tactActive) {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum1 = parseInt(this.oldOutput) + this.P[0];
-              if (sum1 > 1) {
-                this.P[1] = 0;
-              } else if (sum1 == 1) {
-                this.P[1] = 1;
-              } else {
-                this.P[1] = 0;
-              }
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
             } else {
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq2();
             }
             this.output = this.P[1];
             break;
           case "101":
             console.log('case 101');
             if (diff < this.tactsService.tactActive) {
-              let sum = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               this.P[1] = parseInt(this.P[0]);
-              if (sum > 1) {
-                this.P[0] = 0;
-              } else if (sum == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum0, 0);
             } else {
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq2();
             }
             this.output = this.P[1];
             break;
@@ -133,31 +144,11 @@ export class GraphComponent implements OnInit {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum1 = parseInt(this.oldOutput) + this.P[0];
               let sum2 = parseInt(this.oldOutput) + this.P[1];
-              if (sum2 > 1) {
-                this.P[2] = 0;
-              } else if (sum2 == 1) {
-                this.P[2] = 1;
-              } else {
-                this.P[2] = 0;
-              }
-              if (sum1 > 1) {
-                this.P[1] = 0;
-              } else if (sum1 == 1) {
-                this.P[1] = 1;
-              } else {
-                this.P[1] = 0;
-              }
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum2, 2);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
             } else {
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq3();
             }
             this.output = this.P[2];
             break;
@@ -167,24 +158,10 @@ export class GraphComponent implements OnInit {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum1 = parseInt(this.oldOutput) + this.P[0];
               this.P[2] = parseInt(this.P[1]);
-              if (sum1 > 1) {
-                this.P[1] = 0;
-              } else if (sum1 == 1) {
-                this.P[1] = 1;
-              } else {
-                this.P[1] = 0;
-              }
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
             } else {
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq3();
             }
             this.output = this.P[2];
             break;
@@ -193,45 +170,23 @@ export class GraphComponent implements OnInit {
             if (diff < this.tactsService.tactActive) {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum2 = parseInt(this.oldOutput) + this.P[1];
-              if (sum2 > 1) {
-                this.P[2] = 0;
-              } else if (sum2 == 1) {
-                this.P[2] = 1;
-              } else {
-                this.P[2] = 0;
-              }
+              this.checkSum(sum2, 2);
               this.P[1] = parseInt(this.P[0]);
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum0, 0);
             } else {
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq3();
             }
             this.output = this.P[2];
             break;
           case "1001":
             console.log('case 1001');
             if (diff < this.tactsService.tactActive) {
-              let sum = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               this.P[2] = parseInt(this.P[1]);
               this.P[1] = parseInt(this.P[0]);
-              if (sum > 1) {
-                this.P[0] = 0;
-              } else if (sum == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum0, 0);
             } else {
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq3();
             }
             this.output = this.P[2];
             break;
@@ -268,39 +223,12 @@ export class GraphComponent implements OnInit {
               let sum1 = parseInt(this.oldOutput) + this.P[0];
               let sum2 = parseInt(this.oldOutput) + this.P[1];
               let sum3 = parseInt(this.oldOutput) + this.P[2];
-              if (sum3 > 1) {
-                this.P[3] = 0;
-              } else if (sum3 == 1) {
-                this.P[3] = 1;
-              } else {
-                this.P[3] = 0;
-              }
-              if (sum2 > 1) {
-                this.P[2] = 0;
-              } else if (sum2 == 1) {
-                this.P[2] = 1;
-              } else {
-                this.P[2] = 0;
-              }
-              if (sum1 > 1) {
-                this.P[1] = 0;
-              } else if (sum1 == 1) {
-                this.P[1] = 1;
-              } else {
-                this.P[1] = 0;
-              }
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum3, 3);
+              this.checkSum(sum2, 2);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
             } else {
-              this.P[3] = parseInt(this.P[2]);
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq4();
             }
             this.output = this.P[3];
             break;
@@ -310,35 +238,14 @@ export class GraphComponent implements OnInit {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum2 = parseInt(this.oldOutput) + this.P[1];
               let sum3 = parseInt(this.oldOutput) + this.P[2];
-              if (sum3 > 1) {
-                this.P[3] = 0;
-              } else if (sum3 == 1) {
-                this.P[3] = 1;
-              } else {
-                this.P[3] = 0;
-              }
-              if (sum2 > 1) {
-                this.P[2] = 0;
-              } else if (sum2 == 1) {
-                this.P[2] = 1;
-              } else {
-                this.P[2] = 0;
-              }
+              this.checkSum(sum3, 3);
+              this.checkSum(sum2, 2);
 
               this.P[1] = this.P[0];
 
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum0, 0);
             } else {
-              this.P[3] = parseInt(this.P[2]);
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq4();
             }
             this.output = this.P[3];
             break;
@@ -348,33 +255,12 @@ export class GraphComponent implements OnInit {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum1 = parseInt(this.oldOutput) + this.P[0];
               let sum3 = parseInt(this.oldOutput) + this.P[2];
-              if (sum3 > 1) {
-                this.P[3] = 0;
-              } else if (sum3 == 1) {
-                this.P[3] = 1;
-              } else {
-                this.P[3] = 0;
-              }
+              this.checkSum(sum3, 3);
               this.P[2] = this.P[1];
-              if (sum1 > 1) {
-                this.P[1] = 0;
-              } else if (sum1 == 1) {
-                this.P[1] = 1;
-              } else {
-                this.P[1] = 0;
-              }
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
             } else {
-              this.P[3] = parseInt(this.P[2]);
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq4();
             }
             this.output = this.P[3];
             break;
@@ -385,32 +271,11 @@ export class GraphComponent implements OnInit {
               let sum1 = parseInt(this.oldOutput) + this.P[0];
               let sum2 = parseInt(this.oldOutput) + this.P[1];
               this.P[3] = this.P[2];
-              if (sum2 > 1) {
-                this.P[2] = 0;
-              } else if (sum2 == 1) {
-                this.P[2] = 1;
-              } else {
-                this.P[2] = 0;
-              }
-              if (sum1 > 1) {
-                this.P[1] = 0;
-              } else if (sum1 == 1) {
-                this.P[1] = 1;
-              } else {
-                this.P[1] = 0;
-              }
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum2, 2);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
             } else {
-              this.P[3] = parseInt(this.P[2]);
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq4();
             }
             this.output = this.P[3];
             break;
@@ -419,27 +284,12 @@ export class GraphComponent implements OnInit {
             if (diff < this.tactsService.tactActive) {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum3 = parseInt(this.oldOutput) + this.P[2];
-              if (sum3 > 1) {
-                this.P[3] = 0;
-              } else if (sum3 == 1) {
-                this.P[3] = 1;
-              } else {
-                this.P[3] = 0;
-              }
+              this.checkSum(sum3, 3);
               this.P[2] = this.P[1];
               this.P[1] = parseInt(this.P[0]);
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum0, 0);
             } else {
-              this.P[3] = parseInt(this.P[2]);
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq4();
             }
             this.output = this.P[3];
             break;
@@ -449,26 +299,11 @@ export class GraphComponent implements OnInit {
               let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
               let sum2 = parseInt(this.oldOutput) + this.P[1];
               this.P[3] = this.P[2];
-              if (sum2 > 1) {
-                this.P[2] = 0;
-              } else if (sum2 == 1) {
-                this.P[2] = 1;
-              } else {
-                this.P[2] = 0;
-              }
+              this.checkSum(sum2, 2);
               this.P[1] = parseInt(this.P[0]);
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum0, 0);
             } else {
-              this.P[3] = parseInt(this.P[2]);
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq4();
             }
             this.output = this.P[3];
             break;
@@ -479,25 +314,10 @@ export class GraphComponent implements OnInit {
               let sum1 = parseInt(this.oldOutput) + this.P[1];
               this.P[3] = this.P[2];
               this.P[2] = this.P[1];
-              if (sum1 > 1) {
-                this.P[1] = 0;
-              } else if (sum1 == 1) {
-                this.P[1] = 1;
-              } else {
-                this.P[1] = 0;
-              }
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
             } else {
-              this.P[3] = parseInt(this.P[2]);
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq4();
             }
             this.output = this.P[3];
             break;
@@ -508,24 +328,314 @@ export class GraphComponent implements OnInit {
               this.P[3] = this.P[2];
               this.P[2] = this.P[1];
               this.P[1] = this.P[0];
-              if (sum0 > 1) {
-                this.P[0] = 0;
-              } else if (sum0 == 1) {
-                this.P[0] = 1;
-              } else {
-                this.P[0] = 0;
-              }
+              this.checkSum(sum0, 0);
             } else {
-              this.P[3] = parseInt(this.P[2]);
-              this.P[2] = parseInt(this.P[1]);
-              this.P[1] = parseInt(this.P[0]);
-              this.P[0] = parseInt(this.appService.input);
+              this.setSeq4();
             }
             this.output = this.P[3];
             break;
         }
       }
       ///////////////////////////
+
+      //DLA 6 STOPNIA g(x) czyli x^5
+      if (this.appService.polynomialRatioGx === 5) {
+        console.log('RATIO 5');
+        if (this.appService.selectedBinaryScopeGx[4] === '1' && this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[2] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex5 = "111111"
+        } else if (this.appService.selectedBinaryScopeGx[4] === '1' && this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[2] === '1') {
+          this.sequencex5 = "111101"
+        } else if (this.appService.selectedBinaryScopeGx[4] === '1' && this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex5 = "111011"
+        } else if (this.appService.selectedBinaryScopeGx[4] === '1' && this.appService.selectedBinaryScopeGx[3] === '1') {
+          this.sequencex5 = "111001"
+        } else if (this.appService.selectedBinaryScopeGx[4] === '1' && this.appService.selectedBinaryScopeGx[2] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex5 = "110111"
+        } else if (this.appService.selectedBinaryScopeGx[4] === '1' && this.appService.selectedBinaryScopeGx[2] === '1') {
+          this.sequencex5 = "110101"
+        } else if (this.appService.selectedBinaryScopeGx[4] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex5 = "110011"
+        } else if (this.appService.selectedBinaryScopeGx[4] === '1') {
+          this.sequencex5 = "110001"
+        } else if (this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[2] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex5 = "101111"
+        } else if (this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[2] === '1') {
+          this.sequencex5 = "101101"
+        } else if (this.appService.selectedBinaryScopeGx[3] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex5 = "101011"
+        } else if (this.appService.selectedBinaryScopeGx[3] === '1') {
+          this.sequencex5 = "101001"
+        } else if (this.appService.selectedBinaryScopeGx[2] === '1' && this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex5 = "100111"
+        } else if (this.appService.selectedBinaryScopeGx[2] === '1') {
+          this.sequencex5 = "100101"
+        } else if (this.appService.selectedBinaryScopeGx[1] === '1') {
+          this.sequencex5 = "100011"
+        } else {
+          this.sequencex5 = "100001"
+        }
+
+        switch (this.sequencex5) {
+          case "111111":
+            console.log('case 111111');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              let sum4 = parseInt(this.oldOutput) + this.P[3];
+              this.checkSum(sum4, 4);
+              this.checkSum(sum3, 3);
+              this.checkSum(sum2, 2);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "111101":
+            console.log('case 111101');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              let sum4 = parseInt(this.oldOutput) + this.P[3];
+              this.checkSum(sum4, 4);
+              this.checkSum(sum3, 3);
+              this.checkSum(sum2, 2);
+              this.P[1] = parseInt(this.P[0]);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "111011":
+            console.log('case 111011');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              let sum4 = parseInt(this.oldOutput) + this.P[3];
+              this.checkSum(sum4, 4);
+              this.checkSum(sum3, 3);
+              this.P[2] = parseInt(this.P[1]);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "111001":
+            console.log('case 111001');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              let sum4 = parseInt(this.oldOutput) + this.P[3];
+              this.checkSum(sum4, 4);
+              this.checkSum(sum3, 3);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "110111":
+            console.log('case 110111');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              let sum4 = parseInt(this.oldOutput) + this.P[3];
+              this.checkSum(sum4, 4);
+              this.P[3] = parseInt(this.P[2]);
+              this.checkSum(sum2, 2);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "110101":
+            console.log('case 110101');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              let sum4 = parseInt(this.oldOutput) + this.P[3];
+              this.checkSum(sum4, 4);
+              this.P[3] = parseInt(this.P[2]);
+              this.checkSum(sum2, 2);
+              this.P[1] = parseInt(this.P[0]);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "110011":
+            console.log('case 110011');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum4 = parseInt(this.oldOutput) + this.P[3];
+              this.checkSum(sum4, 4);
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "110001":
+            console.log('case 110001');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum4 = parseInt(this.oldOutput) + this.P[3];
+              this.checkSum(sum4, 4);
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "101111":
+            console.log('case 101111');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              this.P[4] = parseInt(this.P[3]);
+              this.checkSum(sum3, 3);
+              this.checkSum(sum2, 2);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "101101":
+            console.log('case 101101');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              this.P[4] = parseInt(this.P[3]);
+              this.checkSum(sum3, 3);
+              this.checkSum(sum2, 2);
+              this.P[1] = parseInt(this.P[0]);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "101011":
+            console.log('case 101011');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              this.P[4] = parseInt(this.P[3]);
+              this.checkSum(sum3, 3);
+              this.P[2] = parseInt(this.P[1]);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "101001":
+            console.log('case 101001');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum3 = parseInt(this.oldOutput) + this.P[2];
+              this.P[4] = parseInt(this.P[3]);
+              this.checkSum(sum3, 3);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "100111":
+            console.log('case 100111');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              this.P[4] = parseInt(this.P[3]);
+              this.P[3] = parseInt(this.P[2]);
+              this.checkSum(sum2, 2);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "100101":
+            console.log('case 100101');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum2 = parseInt(this.oldOutput) + this.P[1];
+              this.P[4] = parseInt(this.P[3]);
+              this.P[3] = parseInt(this.P[2]);
+              this.checkSum(sum2, 2);
+              this.P[1] = parseInt(this.P[0]);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "100011":
+            console.log('case 100011');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              let sum1 = parseInt(this.oldOutput) + this.P[0];
+              this.P[4] = parseInt(this.P[3]);
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.checkSum(sum1, 1);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+          case "100001":
+            console.log('case 100001');
+            if (diff < this.tactsService.tactActive) {
+              let sum0 = parseInt(this.oldOutput) + parseInt(this.appService.input);
+              this.P[4] = parseInt(this.P[3]);
+              this.P[3] = parseInt(this.P[2]);
+              this.P[2] = parseInt(this.P[1]);
+              this.P[1] = parseInt(this.P[0]);
+              this.checkSum(sum0, 0);
+            } else {
+              this.setSeq5();
+            }
+            this.output = this.P[4];
+            break;
+        }
+      }
+      ///////////////////////////
+
 
       this.appService.input = parseInt(array[array.length - this.iteration]);
       this.checkNan();
