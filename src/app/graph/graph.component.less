@@ -12,3 +12,38 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+ul {
+    margin-top: 15px;
+    list-style: none;
+    li {
+        a { 
+            padding: 15px 5px;
+            text-decoration: none; 
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            font-size: 25px;
+            color: black;
+            cursor: pointer;
+        }
+    }
+}
+
+.cxSection {
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 20px;
+    .cxcodes {
+        margin: 5px 0;
+        display: flex;
+        flex-direction: row-reverse;
+        .cxcode {
+            width: 20px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    }
+}

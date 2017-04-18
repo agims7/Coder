@@ -1,9 +1,9 @@
 <nav>
   <ul>
-    <li>
+    <li *ngIf='appService.pageCode'>
       <a [routerLink]="['graph']">Graph</a>
     </li>
-    <li>
+    <li *ngIf='appService.pageGraph'>
       <a [routerLink]="['coder']">Coder setup</a>
     </li>
   </ul>

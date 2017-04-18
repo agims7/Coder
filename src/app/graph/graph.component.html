@@ -50,3 +50,12 @@
         <th>{{ output }}</th>
     </tr>
 </table>
+
+  <div *ngIf="visibility" class="cxSection">
+    <p>Wielomian kodowy c(x):</p>
+    <div class="cxcodes">
+      <span class="cxcode" *ngFor="let item of appService.polynomialBinaryScopeCx; let x = index">
+    {{ item }}
+    </span>
+    </div>
+  </div>
