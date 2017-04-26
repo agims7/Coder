@@ -21,9 +21,10 @@ export class CoderComponent implements OnInit {
   private result;
   private inputHx: string;
   private inputGx: string;
-  private newHxValue: string[];
-  private newGxValue: string[];
-  private max: number;
+  private newHxValue;
+  private newGxValue;
+  private maxHx;
+  private maxGx;
 
   constructor(
     private appService: AppService,
@@ -164,38 +165,32 @@ export class CoderComponent implements OnInit {
   }
 
   updateVariablesHx() {
-    if (this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange) == false) {
-      this.appService.polynomialHx = 0;
-      this.appService.polynomialHxRange = [];
-      this.appService.selectedBinaryScopeHx = [];
-      this.inputHx = null;
+    if (this.getBinarryNotation(this.inputHx, this.maxHx, this.maxHxRange, this.minHxRange) == false) {
+      this.resetAll();
+      this.inputGx = null;
       console.log('tak')
     } else {
-      console.log('nie')
-      this.newHxValue = this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange);
+      this.newHxValue = this.getBinarryNotation(this.inputHx, this.maxHx, this.maxHxRange, this.minHxRange);
       this.appService.selectedBinaryScopeHx = this.newHxValue;
-      this.appService.polynomialHx = this.max + 1;
+      this.appService.polynomialHx = this.maxHx + 1;
       this.appService.polynomialHxRange = [];
-      for (let i = 0; i <= this.max; i++) {
+      for (let i = 0; i <= this.maxHx; i++) {
         this.appService.polynomialHxRange.push(i);
       }
     }
   }
 
-    updateVariablesGx() {
-    if (this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange) == false) {
-      this.appService.polynomialGx = 0;
-      this.appService.polynomialGxRange = [];
-      this.appService.selectedBinaryScopeGx = [];
+  updateVariablesGx() {
+    if (this.getBinarryNotation(this.inputGx, this.maxGx, this.maxGxRange, this.minGxRange) == false) {
+      this.resetAll();
       this.inputGx = null;
-      console.log('tak')
     } else {
-      console.log('nie')
-      this.newGxValue = this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange);
+      this.newGxValue = this.getBinarryNotation(this.inputGx, this.maxGx, this.maxGxRange, this.minGxRange);
+
       this.appService.selectedBinaryScopeGx = this.newGxValue;
-      this.appService.polynomialGx = this.max + 1;
+      this.appService.polynomialGx = this.maxGx + 1;
       this.appService.polynomialGxRange = [];
-      for (let i = 0; i <= this.max; i++) {
+      for (let i = 0; i <= this.maxHx; i++) {
         this.appService.polynomialGxRange.push(i);
       }
     }
@@ -221,33 +216,32 @@ export class CoderComponent implements OnInit {
       } else {                                       // otherwise
         res[power] = coef;                           // start a new sum initialized with this coeficient
       }
-      console.log(res)
       return res;
     }, {});
   }
 
-  getBinarryNotation(polynomial, maxRange, minRange) {
+  getBinarryNotation(polynomial, max, maxRange, minRange) {
     let ret = this.getCoef(polynomial);                // getCoef result and save to variable
     // let ret = { "3": 7, "0": 19 };                  // the returned object
     let powers = Object.keys(ret);                     // get all the powers (in this case [3, 0])
     console.log('powers', powers);
-    this.max = Math.max.apply(null, powers);         // get the max power from powers array (in this case 3)
-    console.log('max', this.max);
+    max = Math.max.apply(null, powers);         // get the max power from powers array (in this case 3)
+    console.log('max', max);
     this.result = [];
 
-    for (let i = this.max; i >= 0; i--) {                   // from the max power to 0
+    for (let i = max; i >= 0; i--) {                   // from the max power to 0
       this.result.push((ret[i] || 0).toString());      // if that power has a coeficient then push it, otherwise push 0
     }
-    for (let i = this.max; i >= 0; i--) {
+    for (let i = max; i >= 0; i--) {
       if (this.result[i] > 1) {
         this.result[i] = '1';
       }
     }
-    console.log(this.result, this.max)
+    console.log(this.result)
     this.result.reverse();
-    if (this.max > maxRange) {
+    if (max > maxRange) {
       return false;
-    } else if (this.max < minRange) {
+    } else if (max < minRange) {
       return false;
     }
     return this.result;

@@ -2,6 +2,12 @@
   <h3 class="title">Ustaw wielomian informacyjny h(x):</h3>
 
   <h4>Podaj stopień wielomianu informacyjnego h(x):</h4>
+
+  <input type="text" placeholder="x^9+x^5+x^2+1" [(ngModel)]="inputHx"/>
+  <button (click)="updateVariablesHx()">Przelicz</button>
+
+  <p>Lub</p>
+
   <input class="firstInput" type="number" min="{{minHxRange}}" max="{{maxHxRange}}" [(ngModel)]="appService.polynomialHx" value="polynomialHx"
     (ngModelChange)="updateHxScope()" />
 
@@ -28,6 +34,12 @@
   <h3 class="title">Ustaw wielomian generujący g(x):</h3>
 
   <h4>Podaj stopień wielomianu generujacego g(x):</h4>
+
+  <input type="text" placeholder="x^5+x^4+x^2+1" [(ngModel)]="inputGx"/>
+  <button (click)="updateVariablesGx()">Przelicz</button>
+
+  <p>Lub</p>
+
   <input class="firstInput" type="number" min="{{minGxRange}}" max="{{maxGxRange}}" [(ngModel)]="appService.polynomialGx" value="polynomialGx"
     (ngModelChange)="updateGxScope()" />
 
