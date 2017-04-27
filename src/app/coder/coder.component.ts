@@ -14,9 +14,9 @@ export class CoderComponent implements OnInit {
   private maxGxRange: number = 6;
   private minGxRange: number = 2;
   private binaryScope: string[] = ['0', '1'];
-
   private visibility: boolean = false;
-
+  private warningHx: boolean = false;
+  private warningGx: boolean = false;
   private polyn = "x^4 + x + 1";
   private result;
   private inputHx: string;
@@ -64,11 +64,6 @@ export class CoderComponent implements OnInit {
         range.push(i);
       }
     }
-  }
-
-  check() {
-    console.log('selectedBinaryScopeHx ', this.appService.selectedBinaryScopeHx);
-    console.log('selectedBinaryScopeGx ', this.appService.selectedBinaryScopeGx);
   }
 
   updateHxScope() {
@@ -132,6 +127,8 @@ export class CoderComponent implements OnInit {
       this.appService.polynomialRatioGx = null;
       this.appService.polynomialBinaryScopeHGx = null;
     }
+    this.warningHx = false;
+    this.warningGx = false;
   }
 
   copy(o) {
@@ -163,41 +160,67 @@ export class CoderComponent implements OnInit {
     this.tactsService.tacts = 0;
   }
 
-  updateVariablesHx() {
-    if (this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange) == false) {
-      this.appService.polynomialHx = 0;
-      this.appService.polynomialHxRange = [];
-      this.appService.selectedBinaryScopeHx = [];
-      this.inputHx = null;
-      console.log('tak')
+  resetHx() {
+    this.appService.polynomialHx = 0;
+    this.appService.polynomialHxRange = [];
+    this.appService.selectedBinaryScopeHx = [];
+    this.inputHx = null;
+  }
+
+  resetGx() {
+    this.appService.polynomialGx = 0;
+    this.appService.polynomialGxRange = [];
+    this.appService.selectedBinaryScopeGx = [];
+    this.inputGx = null
+  }
+
+  checkInput(input) {
+    if (input === null || input === undefined) {
+      return false;
     } else {
-      console.log('nie')
-      this.newHxValue = this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange);
-      this.appService.selectedBinaryScopeHx = this.newHxValue;
-      this.appService.polynomialHx = this.max + 1;
-      this.appService.polynomialHxRange = [];
-      for (let i = 0; i <= this.max; i++) {
-        this.appService.polynomialHxRange.push(i);
-      }
+      return true;
     }
   }
 
-    updateVariablesGx() {
-    if (this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange) == false) {
-      this.appService.polynomialGx = 0;
-      this.appService.polynomialGxRange = [];
-      this.appService.selectedBinaryScopeGx = [];
-      this.inputGx = null;
-      console.log('tak')
+  updateVariablesHx() {
+    if (this.checkInput(this.inputHx) === false) {
+      this.warningHx = true;
+      return;
     } else {
-      console.log('nie')
-      this.newGxValue = this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange);
-      this.appService.selectedBinaryScopeGx = this.newGxValue;
-      this.appService.polynomialGx = this.max + 1;
-      this.appService.polynomialGxRange = [];
-      for (let i = 0; i <= this.max; i++) {
-        this.appService.polynomialGxRange.push(i);
+      if (this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange) == false) {
+        this.warningHx = true;
+        this.resetHx();
+      } else {
+        this.newHxValue = this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange);
+        this.appService.selectedBinaryScopeHx = this.newHxValue;
+        this.appService.polynomialHx = this.max + 1;
+        this.appService.polynomialHxRange = [];
+        for (let i = 0; i <= this.max; i++) {
+          this.appService.polynomialHxRange.push(i);
+        }
       }
+      this.warningHx = false;
+    }
+  }
+
+  updateVariablesGx() {
+    if (this.checkInput(this.inputGx) === false) {
+      this.warningGx = true;
+      return;
+    } else {
+      if (this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange) == false) {
+        this.warningGx = true;
+        this.resetGx();
+      } else {
+        this.newGxValue = this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange);
+        this.appService.selectedBinaryScopeGx = this.newGxValue;
+        this.appService.polynomialGx = this.max + 1;
+        this.appService.polynomialGxRange = [];
+        for (let i = 0; i <= this.max; i++) {
+          this.appService.polynomialGxRange.push(i);
+        }
+      }
+      this.warningGx = false;
     }
   }
 
@@ -246,9 +269,11 @@ export class CoderComponent implements OnInit {
     console.log(this.result, this.max)
     this.result.reverse();
     if (this.max > maxRange) {
-      return false;
+      this.warningHx = true;
+      console.log('outOfRange');
     } else if (this.max < minRange) {
-      return false;
+      this.warningHx = true;
+      console.log('outOfRange');
     }
     return this.result;
   }

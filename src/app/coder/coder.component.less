@@ -5,6 +5,13 @@ p {
 
 .coderInput {
     padding: 20px 50px;
+    .warning {
+        display: inline-block;
+        margin-left: 15px;
+        color: red;
+        -webkit-animation: blink 1s infinite;
+        animation: blink 1s infinite;
+    }
 }
 
 .title {
@@ -108,4 +115,16 @@ p {
             }
         }
     }
+}
+
+@-webkit-keyframes blink {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes blink {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
 }
