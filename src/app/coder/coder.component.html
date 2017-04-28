@@ -3,11 +3,11 @@
 
   <h4>Podaj stopień wielomianu informacyjnego h(x):</h4>
 
-  <input type="text" placeholder="x^9+x^5+x^2+1" [(ngModel)]="inputHx"/>
+  <input type="text" placeholder="x^9+x^5+x^2+1" [(ngModel)]="inputHx" />
   <button (click)="updateVariablesHx()">Przelicz</button>
   <div *ngIf="warningHx" class="warning">
     <span class="fa fa-exclamation-triangle"></span>
-    <strong>Podano za mały lub zbyt duży stopień wielomianu</strong> 
+    <strong>Podano za mały lub zbyt duży stopień wielomianu</strong>
     <span class="fa fa-exclamation-triangle"></span>
   </div>
 
@@ -40,11 +40,11 @@
 
   <h4>Podaj stopień wielomianu generujacego g(x):</h4>
 
-  <input type="text" placeholder="x^5+x^4+x^2+1" [(ngModel)]="inputGx"/>
+  <input type="text" placeholder="x^5+x^4+x^2+1" [(ngModel)]="inputGx" />
   <button (click)="updateVariablesGx()">Przelicz</button>
-    <div *ngIf="warningGx" class="warning">
+  <div *ngIf="warningGx" class="warning">
     <span class="fa fa-exclamation-triangle"></span>
-    <strong>Podano za mały lub zbyt duży stopień wielomianu</strong> 
+    <strong>Podano za mały lub zbyt duży stopień wielomianu</strong>
     <span class="fa fa-exclamation-triangle"></span>
   </div>
 
@@ -85,5 +85,11 @@
     </span>
     </div>
     <p>Teraz przejdź na widok "Graph"</p>
+  </div>
+
+  <div *ngIf="wrongPolynomial" class="warning">
+    <span class="fa fa-exclamation-triangle"></span>
+    <strong>Wielomian słowa generującego jest większy od wielomianu słowa informacyjnego!</strong>
+    <span class="fa fa-exclamation-triangle"></span>
   </div>
 </div>

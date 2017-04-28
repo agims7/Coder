@@ -11,7 +11,7 @@ import { AppService } from '../services/app.service';
 export class CoderComponent implements OnInit {
   private maxHxRange: number = 10;
   private minHxRange: number = 2;
-  private maxGxRange: number = 6;
+  private maxGxRange: number = 5;
   private minGxRange: number = 2;
   private binaryScope: string[] = ['0', '1'];
   private visibility: boolean = false;
@@ -24,6 +24,7 @@ export class CoderComponent implements OnInit {
   private newHxValue: string[];
   private newGxValue: string[];
   private max: number;
+  private wrongPolynomial: boolean = false;
 
   constructor(
     private appService: AppService,
@@ -98,7 +99,8 @@ export class CoderComponent implements OnInit {
   }
 
   checkPolynomialRatio() {
-    if (this.checkGx() === true) {
+  if (this.appService.polynomialRatioHx >= this.appService.polynomialRatioGx) {
+if (this.checkGx() === true) {
       this.visibility = true;
       this.appService.polynomialRatioHx = null;
       this.appService.polynomialRatioGx = null;
@@ -129,6 +131,10 @@ export class CoderComponent implements OnInit {
     }
     this.warningHx = false;
     this.warningGx = false;
+    this.wrongPolynomial = false;
+  } else {
+    this.wrongPolynomial = true;
+  }  
   }
 
   copy(o) {
@@ -175,9 +181,22 @@ export class CoderComponent implements OnInit {
   }
 
   checkInput(input) {
-    if (input === null || input === undefined) {
+    if (input === null || input === undefined || input === '') {
       return false;
     } else {
+      return true;
+    }
+  }
+
+ checkRange(currentMax, maxRange, minRange) {
+    if (currentMax > maxRange) {
+      console.log('przekroczone MAX')
+      return false;
+    } else if (currentMax < minRange) {
+      console.log('ponizej MAX')
+      return false;
+    } else {
+      console.log('pomiedzy max i min')
       return true;
     }
   }
@@ -185,104 +204,111 @@ export class CoderComponent implements OnInit {
   updateVariablesHx() {
     if (this.checkInput(this.inputHx) === false) {
       this.warningHx = true;
-      return;
-    } else {
-      if (this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange) == false) {
-        this.warningHx = true;
-        this.resetHx();
-      } else {
-        this.newHxValue = this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange);
-        this.appService.selectedBinaryScopeHx = this.newHxValue;
-        this.appService.polynomialHx = this.max + 1;
-        this.appService.polynomialHxRange = [];
-        for (let i = 0; i <= this.max; i++) {
-          this.appService.polynomialHxRange.push(i);
-        }
+    }
+    this.newHxValue = this.getBinarryNotation(this.inputHx, this.maxHxRange, this.minHxRange);
+    if (this.newHxValue !== undefined && this.newHxValue !== null) {
+      this.appService.selectedBinaryScopeHx = this.newHxValue;
+      this.appService.polynomialHx = this.max + 1;
+      this.appService.polynomialHxRange = [];
+      for (let i = 0; i <= this.max; i++) {
+        this.appService.polynomialHxRange.push(i);
       }
       this.warningHx = false;
+    } else {
+      this.resetHx();
+      this.warningHx = true;
     }
   }
 
   updateVariablesGx() {
     if (this.checkInput(this.inputGx) === false) {
       this.warningGx = true;
-      return;
-    } else {
-      if (this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange) == false) {
-        this.warningGx = true;
-        this.resetGx();
-      } else {
-        this.newGxValue = this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange);
-        this.appService.selectedBinaryScopeGx = this.newGxValue;
-        this.appService.polynomialGx = this.max + 1;
-        this.appService.polynomialGxRange = [];
-        for (let i = 0; i <= this.max; i++) {
-          this.appService.polynomialGxRange.push(i);
-        }
+    }
+    this.newGxValue = this.getBinarryNotation(this.inputGx, this.maxGxRange, this.minGxRange);
+    if (this.newGxValue !== undefined && this.newGxValue !== null) {
+      this.appService.selectedBinaryScopeGx = this.newGxValue;
+      this.appService.polynomialGx = this.max + 1;
+      this.appService.polynomialGxRange = [];
+      for (let i = 0; i <= this.max; i++) {
+        this.appService.polynomialGxRange.push(i);
       }
       this.warningGx = false;
+    } else {
+      this.resetGx();
+      this.warningGx = true;
     }
   }
 
   getCoef(str) {
-    str = str.replace(/\s+/g, "");                   // remove spaces (optional)
-    let parts = str.match(/[+\-]?[^+\-]+/g);         // get the parts: see explanation bellow
-
-    // accumulate the results
-    return parts.reduce(function (res, part) {        // for each part in parts
-      let coef = parseFloat(part) || +(part[0] + "1") || 1;// the coeficient is the number at the begining of each part (34x => 34), if there is no number it is assumed to be +/-1 depending on the sign (+x^2 => +1)
-      let x = part.indexOf('x');                     // the index of "x" in this part (could be -1 if there isn't)
-      // calculating the power of this part
-      let power = x === -1 ?                         // if the index of "x" is -1 (there is no "x")
-        0 :                                          // then the power is 0 (Ex: -2)
-        part[x + 1] === "^" ?                        // otherwise (if there is an "x"), then check if the char right after "x" is "^", if so...
-          +part.slice(x + 2) :                       // then the power is the number right after it (Ex: 55x^30)
-          1;                                         // otherwise it's 1 (Ex: 55x)
-
-      if (res[power]) {                              // if we already encountered this power in other parts before
-        res[power] += coef;                          // then add this coeficient to the sum of those previous coeficients
-      } else {                                       // otherwise
-        res[power] = coef;                           // start a new sum initialized with this coeficient
-      }
-      console.log(res)
-      return res;
-    }, {});
+    console.log('STR', str);
+    if (str === undefined || str === null || str === "") {
+      console.log('STR jest null albo undefined')
+    } else {
+      str = str.replace(/\s+/g, "");                   // remove spaces (optional)
+      let parts = str.match(/[+\-]?[^+\-]+/g);         // get the parts: see explanation bellow
+      // accumulate the results
+      return parts.reduce(function (res, part) {        // for each part in parts
+        let coef = parseFloat(part) || +(part[0] + "1") || 1;// the coeficient is the number at the begining of each part (34x => 34), if there is no number it is assumed to be +/-1 depending on the sign (+x^2 => +1)
+        let x = part.indexOf('x');                     // the index of "x" in this part (could be -1 if there isn't)
+        // calculating the power of this part
+        let power = x === -1 ?                         // if the index of "x" is -1 (there is no "x")
+          0 :                                          // then the power is 0 (Ex: -2)
+          part[x + 1] === "^" ?                        // otherwise (if there is an "x"), then check if the char right after "x" is "^", if so...
+            +part.slice(x + 2) :                       // then the power is the number right after it (Ex: 55x^30)
+            1;                                         // otherwise it's 1 (Ex: 55x)
+        if (res[power]) {                              // if we already encountered this power in other parts before
+          res[power] += coef;                          // then add this coeficient to the sum of those previous coeficients
+        } else {                                       // otherwise
+          res[power] = coef;                           // start a new sum initialized with this coeficient
+        }
+        console.log(res)
+        return res;
+      }, {});
+    }
   }
 
   getBinarryNotation(polynomial, maxRange, minRange) {
     let ret = this.getCoef(polynomial);                // getCoef result and save to variable
     // let ret = { "3": 7, "0": 19 };                  // the returned object
-    let powers = Object.keys(ret);                     // get all the powers (in this case [3, 0])
-    console.log('powers', powers);
-    this.max = Math.max.apply(null, powers);         // get the max power from powers array (in this case 3)
-    console.log('max', this.max);
-    this.result = [];
+    console.log('this.getCoef(polynomial', ret);
+    if (ret !== undefined && ret !== null) {
+      let powers = Object.keys(ret);                     // get all the powers (in this case [3, 0])
+      console.log('powers', powers);
+      this.max = Math.max.apply(null, powers);         // get the max power from powers array (in this case 3)
+      console.log('max', this.max);
+      this.result = [];
 
-    for (let i = this.max; i >= 0; i--) {                   // from the max power to 0
-      this.result.push((ret[i] || 0).toString());      // if that power has a coeficient then push it, otherwise push 0
-    }
-    for (let i = this.max; i >= 0; i--) {
-      if (this.result[i] > 1) {
-        this.result[i] = '1';
+      for (let i = this.max; i >= 0; i--) {                   // from the max power to 0
+        this.result.push((ret[i] || 0).toString());      // if that power has a coeficient then push it, otherwise push 0
       }
+      for (let i = this.max; i >= 0; i--) {
+        if (this.result[i] > 1) {
+          this.result[i] = '1';
+        }
+      }
+      this.result.reverse();
+      console.log('result:', this.result, 'MAX:', this.max, 'maxRange', maxRange, 'minRange', minRange)
+
+      if (this.checkRange(this.max, maxRange, minRange) === false) {
+        if (polynomial === this.inputHx) {
+          this.warningHx = true;
+          this.resetHx();
+        } else if (polynomial === this.inputGx) {
+          this.warningGx = true;
+          this.resetGx();
+        }
+        this.result = undefined;
+      }
+
+      return this.result;
     }
-    console.log(this.result, this.max)
-    this.result.reverse();
-    if (this.max > maxRange) {
-      this.warningHx = true;
-      console.log('outOfRange');
-    } else if (this.max < minRange) {
-      this.warningHx = true;
-      console.log('outOfRange');
-    }
-    return this.result;
   }
+
 
   ngOnInit() {
     // this.appService.updateTitle('Coder setup');
     this.appService.pageCode = true;
     this.appService.pageGraph = false;
-
     this.tactsService.tacts = (this.appService.polynomialHx - 1) + (this.appService.polynomialGx - 1);
     console.log('polynomialHx ', this.appService.polynomialHx)
     console.log('polynomialGx ', this.appService.polynomialGx)
