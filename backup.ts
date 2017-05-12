@@ -24,7 +24,6 @@ export class CoderComponent implements OnInit {
   private newHxValue: string[];
   private newGxValue: string[];
   private max: number;
-  private wrongPolynomial: boolean = false;
 
   constructor(
     private appService: AppService,
@@ -99,135 +98,37 @@ export class CoderComponent implements OnInit {
   }
 
   checkPolynomialRatio() {
-    console.log('polynomialHx ', this.appService.polynomialHx)
-    console.log('polynomialGx ', this.appService.polynomialGx)
-    if (this.appService.polynomialHx >= this.appService.polynomialGx) {
-      if (this.checkGx() === true) {
-        this.visibility = true;
-        this.appService.polynomialRatioHx = null;
-        this.appService.polynomialRatioGx = null;
-        this.appService.polynomialBinaryScopeHGx = null;
-        this.setPolynomialRatio();
-        this.appService.polynomialBinaryScopeHGx = this.copy(this.appService.selectedBinaryScopeHx);
-        for (let i = 0; i < this.appService.polynomialRatioGx; i++) {
-          this.appService.polynomialBinaryScopeHGx.unshift('0');
-        }
-        while (this.appService.polynomialBinaryScopeHGx[this.appService.polynomialBinaryScopeHGx.length - 1] === '0') {
-          this.appService.polynomialBinaryScopeHGx.pop();
-        }
-        console.log('polynomialHx ', this.appService.polynomialHx)
-        console.log('polynomialGx ', this.appService.polynomialGx)
-        console.log('polynomialHxRange ', this.appService.polynomialHxRange)
-        console.log('polynomialGxRange ', this.appService.polynomialGxRange)
-        console.log('selectedBinaryScopeHx ', this.appService.selectedBinaryScopeHx)
-        console.log('selectedBinaryScopeGx ', this.appService.selectedBinaryScopeGx)
-        console.log('polynomialBinaryScopeHGx ', this.appService.polynomialBinaryScopeHGx)
-        console.log('this.appService.polynomialRatioHx ', this.appService.polynomialRatioHx);
-        console.log('this.appService.polynomialRatioGx ', this.appService.polynomialRatioGx);
-        console.log('this.tactsService.tacts ', this.tactsService.tacts)
-      } else {
-        alert('Wartość bitu pierwszego i ostatnigo slowa generujacego g(x) zawsze powinna wynosić 1');
-        this.appService.polynomialRatioHx = null;
-        this.appService.polynomialRatioGx = null;
-        this.appService.polynomialBinaryScopeHGx = null;
+    if (this.checkGx() === true) {
+      this.visibility = true;
+      this.appService.polynomialRatioHx = null;
+      this.appService.polynomialRatioGx = null;
+      this.appService.polynomialBinaryScopeHGx = null;
+      this.setPolynomialRatio();
+      this.appService.polynomialBinaryScopeHGx = this.copy(this.appService.selectedBinaryScopeHx);
+      for (let i = 0; i < this.appService.polynomialRatioGx; i++) {
+        this.appService.polynomialBinaryScopeHGx.unshift('0');
       }
-      this.warningHx = false;
-      this.warningGx = false;
-      this.wrongPolynomial = false;
+      while (this.appService.polynomialBinaryScopeHGx[this.appService.polynomialBinaryScopeHGx.length - 1] === '0') {
+        this.appService.polynomialBinaryScopeHGx.pop();
+      }
+      console.log('polynomialHx ', this.appService.polynomialHx)
+      console.log('polynomialGx ', this.appService.polynomialGx)
+      console.log('polynomialHxRange ', this.appService.polynomialHxRange)
+      console.log('polynomialGxRange ', this.appService.polynomialGxRange)
+      console.log('selectedBinaryScopeHx ', this.appService.selectedBinaryScopeHx)
+      console.log('selectedBinaryScopeGx ', this.appService.selectedBinaryScopeGx)
+      console.log('polynomialBinaryScopeHGx ', this.appService.polynomialBinaryScopeHGx)
+      console.log('this.appService.polynomialRatioHx ', this.appService.polynomialRatioHx);
+      console.log('this.appService.polynomialRatioGx ', this.appService.polynomialRatioGx);
+      console.log('this.tactsService.tacts ', this.tactsService.tacts)
     } else {
-      console.log('nie przeszlo');
-      this.wrongPolynomial = true;
+      alert('Wartość bitu pierwszego i ostatnigo slowa generujacego g(x) zawsze powinna wynosić 1');
+      this.appService.polynomialRatioHx = null;
+      this.appService.polynomialRatioGx = null;
+      this.appService.polynomialBinaryScopeHGx = null;
     }
-    this.appService.calculationDone = true;
-    this.checkPolynomialRatioForHTML();
-    this.resetPolynomialFlipFlops();
-    this.checkPolynomialFlipFlops();
-  }
-
-  checkPolynomialRatioForHTML() {
-    switch (this.appService.polynomialGx) {
-      case (6): {
-        this.appService.htmlRatioThree = true;
-        this.appService.htmlRatioFour = true;
-        this.appService.htmlRatioFive = true;
-        this.appService.htmlRatioSix = true;
-        break;
-      }
-      case (5): {
-        this.appService.htmlRatioThree = true;
-        this.appService.htmlRatioFour = true;
-        this.appService.htmlRatioFive = true;
-        this.appService.htmlRatioSix = false;
-        break;
-      }
-      case (4): {
-        this.appService.htmlRatioThree = true;
-        this.appService.htmlRatioFour = true;
-        this.appService.htmlRatioFive = false;
-        this.appService.htmlRatioSix = false;
-        break;
-      }
-      case (3): {
-        this.appService.htmlRatioThree = true;
-        this.appService.htmlRatioFour = false;
-        this.appService.htmlRatioFive = false;
-        this.appService.htmlRatioSix = false;
-        break;
-      }
-      case (2): {
-        this.appService.htmlRatioThree = false;
-        this.appService.htmlRatioFour = false;
-        this.appService.htmlRatioFive = false;
-        this.appService.htmlRatioSix = false;
-        break;
-      }
-      default: {
-        this.appService.htmlRatioThree = false;
-        this.appService.htmlRatioFour = false;
-        this.appService.htmlRatioFive = false;
-        this.appService.htmlRatioSix = false;
-        break;
-      }
-    }
-  }
-
-  checkPolynomialFlipFlops() {
-    if (this.appService.polynomialGx > 2) {
-      console.log('jest ponad 2')
-      if (this.appService.selectedBinaryScopeGx[1] === '1') {
-        this.appService.htmlFlipFlopThree = true;
-        console.log('3 true',this.appService.selectedBinaryScopeGx[1] )
-      }
-    }
-    if (this.appService.polynomialGx > 3) {
-      console.log('jest ponad 3')
-      if (this.appService.selectedBinaryScopeGx[2] === '1') {
-        this.appService.htmlFlipFlopFour = true;
-        console.log('4 true',this.appService.selectedBinaryScopeGx[1] )
-      }
-    }
-    if (this.appService.polynomialGx > 4) {
-      console.log('jest ponad 4')
-      if (this.appService.selectedBinaryScopeGx[3] === '1') {
-        this.appService.htmlFlipFlopFive = true;
-        console.log('5 true',this.appService.selectedBinaryScopeGx[1] )
-      }
-    }
-    if (this.appService.polynomialGx > 5) {
-      console.log('jest ponad 5')
-      if (this.appService.selectedBinaryScopeGx[4] === '1') {
-        this.appService.htmlFlipFlopSix = true;
-        console.log('6 true',this.appService.selectedBinaryScopeGx[1] )
-      }
-    }
-    console.log(this.appService.htmlFlipFlopThree,  this.appService.htmlFlipFlopFour,  this.appService.htmlFlipFlopFive, this.appService.htmlFlipFlopSix);
-  }
-
-  resetPolynomialFlipFlops() {
-    this.appService.htmlFlipFlopThree = false;
-    this.appService.htmlFlipFlopFour = false;
-    this.appService.htmlFlipFlopFive = false;
-    this.appService.htmlFlipFlopSix = false;
+    this.warningHx = false;
+    this.warningGx = false;
   }
 
   copy(o) {
@@ -257,7 +158,6 @@ export class CoderComponent implements OnInit {
     this.appService.polynomialBinaryScopeHGx = [];
     this.tactsService.tactActive = 0;
     this.tactsService.tacts = 0;
-    this.resetPolynomialFlipFlops();
   }
 
   resetHx() {
@@ -278,19 +178,6 @@ export class CoderComponent implements OnInit {
     if (input === null || input === undefined || input === '') {
       return false;
     } else {
-      return true;
-    }
-  }
-
-  checkRange(currentMax, maxRange, minRange) {
-    if (currentMax > maxRange) {
-      console.log('przekroczone MAX')
-      return false;
-    } else if (currentMax < minRange) {
-      console.log('ponizej MAX')
-      return false;
-    } else {
-      console.log('pomiedzy max i min')
       return true;
     }
   }
@@ -381,18 +268,6 @@ export class CoderComponent implements OnInit {
         }
       }
       this.result.reverse();
-      console.log('result:', this.result, 'MAX:', this.max, 'maxRange', maxRange, 'minRange', minRange)
-
-      if (this.checkRange(this.max, maxRange, minRange) === false) {
-        if (polynomial === this.inputHx) {
-          this.warningHx = true;
-          this.resetHx();
-        } else if (polynomial === this.inputGx) {
-          this.warningGx = true;
-          this.resetGx();
-        }
-        this.result = undefined;
-      }
 
       return this.result;
     }
@@ -403,6 +278,7 @@ export class CoderComponent implements OnInit {
     // this.appService.updateTitle('Coder setup');
     this.appService.pageCode = true;
     this.appService.pageGraph = false;
+
     this.tactsService.tacts = (this.appService.polynomialHx - 1) + (this.appService.polynomialGx - 1);
     console.log('polynomialHx ', this.appService.polynomialHx)
     console.log('polynomialGx ', this.appService.polynomialGx)

@@ -10,8 +10,8 @@
     <tr>
         <td>{{ tactsService.tactActive }}</td>
         <th>{{ appService.input }}</th>
-        <th>{{ P[0] }}</th>
-        <th>{{ output }}</th>
+        <th>{{ tactsService.P[0] }}</th>
+        <th>{{ tactsService.output }}</th>
     </tr>
 </table>
 
@@ -26,9 +26,9 @@
     <tr>
         <td>{{ tactsService.tactActive }}</td>
         <th>{{ appService.input }}</th>
-        <th>{{ P[0] }}</th>
-        <th>{{ P[1] }}</th>
-        <th>{{ output }}</th>
+        <th>{{ tactsService.P[0] }}</th>
+        <th>{{ tactsService.P[1] }}</th>
+        <th>{{ tactsService.output }}</th>
     </tr>
 </table>
 
@@ -44,10 +44,10 @@
     <tr>
         <td>{{ tactsService.tactActive }}</td>
         <th>{{ appService.input }}</th>
-        <th>{{ P[0] }}</th>
-        <th>{{ P[1] }}</th>
-        <th>{{ P[2] }}</th>
-        <th>{{ output }}</th>
+        <th>{{ tactsService.P[0] }}</th>
+        <th>{{ tactsService.P[1] }}</th>
+        <th>{{ tactsService.P[2] }}</th>
+        <th>{{ tactsService.output }}</th>
     </tr>
 </table>
 
@@ -64,11 +64,11 @@
     <tr>
         <td>{{ tactsService.tactActive }}</td>
         <th>{{ appService.input }}</th>
-        <th>{{ P[0] }}</th>
-        <th>{{ P[1] }}</th>
-        <th>{{ P[2] }}</th>
-        <th>{{ P[3] }}</th>
-        <th>{{ output }}</th>
+        <th>{{ tactsService.P[0] }}</th>
+        <th>{{ tactsService.P[1] }}</th>
+        <th>{{ tactsService.P[2] }}</th>
+        <th>{{ tactsService.P[3] }}</th>
+        <th>{{ tactsService.output }}</th>
     </tr>
 </table>
 
@@ -86,14 +86,16 @@
     <tr>
         <td>{{ tactsService.tactActive }}</td>
         <th>{{ appService.input }}</th>
-        <th>{{ P[0] }}</th>
-        <th>{{ P[1] }}</th>
-        <th>{{ P[2] }}</th>
-        <th>{{ P[3] }}</th>
-        <th>{{ P[4] }}</th>
-        <th>{{ output }}</th>
+        <th>{{ tactsService.P[0] }}</th>
+        <th>{{ tactsService.P[1] }}</th>
+        <th>{{ tactsService.P[2] }}</th>
+        <th>{{ tactsService.P[3] }}</th>
+        <th>{{ tactsService.P[4] }}</th>
+        <th>{{ tactsService.output }}</th>
     </tr>
 </table>
+
+<app-graph-range-six *ngIf="appService.calculationDone" class="marginBottom"></app-graph-range-six>
 
   <div *ngIf="visibility" class="cxSection">
     <p>Wielomian kodowy c(x):</p>
@@ -101,5 +103,6 @@
       <span class="cxcode" *ngFor="let item of appService.polynomialBinaryScopeCx; let x = index">
     {{ item }}
     </span>
+    <p class="final">{{ appService.finalPolynomial }}</p>
     </div>
   </div>
