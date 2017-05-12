@@ -686,10 +686,12 @@ export class GraphComponent implements OnInit {
 
   logInfo() {
     console.log('---------------------------');
-    console.log('input:', this.appService.input);
-    console.log('p0:', this.P[0]);
-    console.log('p1:', this.P[1]);
-    console.log('p2:', this.P[2]);
+    console.log('input:', this.appService.input, typeof this.appService.input);
+    console.log('p0:', this.P[0], typeof this.P[0]);
+    console.log('p1:', this.P[1], typeof this.P[1]);
+    console.log('p2:', this.P[2], typeof this.P[2]);
+    console.log('p3:', this.P[3], typeof this.P[3]);
+    console.log('p4:', this.P[4], typeof this.P[4]);
     console.log('output:', this.output);
     console.log('oldOutput:', this.oldOutput);
     console.log('this.tactsService.tactActive:', this.tactsService.tactActive);
@@ -702,6 +704,7 @@ export class GraphComponent implements OnInit {
     // this.appService.updateTitle('Graph');
     this.appService.pageCode = false;
     this.appService.pageGraph = true;
+    this.logInfo();
   }
 
 }

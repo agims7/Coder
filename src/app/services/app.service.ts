@@ -8,9 +8,9 @@ export class AppService {
   public polynomialHx: number = 4;
   public polynomialHxRange = [0, 1, 2, 3];
   public selectedBinaryScopeHx = ["1", "0", "1", "1"];
-  public polynomialGx: number = 4;
-  public polynomialGxRange = [0, 1, 2, 3];
-  public selectedBinaryScopeGx = ["1", "0", "0", "1"];
+  public polynomialGx: number = 3;
+  public polynomialGxRange = [0, 1, 2];
+  public selectedBinaryScopeGx = ["1", "1", "1"];
   public polynomialBinaryScopeHGx = [];
   public polynomialBinaryScopeCx: any;
   public polynomialRatioHx: number;
