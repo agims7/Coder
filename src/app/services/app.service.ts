@@ -15,6 +15,16 @@ export class AppService {
   public polynomialBinaryScopeCx: any;
   public polynomialRatioHx: number;
   public polynomialRatioGx: number;
+  public finalPolynomial: string = '';
+  public calculationDone = false;
+  public htmlRatioThree: boolean = false;
+  public htmlRatioFour: boolean = false;
+  public htmlRatioFive: boolean = false;
+  public htmlRatioSix: boolean = false;
+  public htmlFlipFlopThree: boolean = false;
+  public htmlFlipFlopFour: boolean = false;
+  public htmlFlipFlopFive: boolean = false;
+  public htmlFlipFlopSix: boolean = false;
 
   public input: any = 0;
 

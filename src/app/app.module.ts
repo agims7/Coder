@@ -11,10 +11,12 @@ import { GraphComponent } from './graph/graph.component';
 
 import { AppService } from './services/app.service';
 import { TactsService } from './services/tacts.service';
+import { GraphRangeSixComponent } from './graph-range-six/graph-range-six.component';
 
 let appRoutes = [
   { path: 'coder', component: CoderComponent },
   { path: 'graph', component: GraphComponent },
+  { path: 'graphRangeSix', component: GraphRangeSixComponent },
   { path: '', component: CoderComponent },
 ];
 
@@ -25,7 +27,8 @@ const routes: Routes = appRoutes;
     AppComponent,
     NavbarComponent,
     CoderComponent,
-    GraphComponent
+    GraphComponent,
+    GraphRangeSixComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
