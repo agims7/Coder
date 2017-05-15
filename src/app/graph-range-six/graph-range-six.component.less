@@ -14,19 +14,19 @@
   font-size: 30px;
 }
 .topLine {
-  width: 500px;
+  width: 465px;
   border: 2px solid black;
   top: 20px;
   left: 100px;
 }
 .bottomLine {
-  width: 650px;
+  width: 500px;
   border: 2px solid black;
   top: 150px;
-  left: 25px;
+  left: 99px;
 }
 .verticalLine {
-  height: 117px;
+  height: 130px;
   border: 2px solid black;
   top: 20px;
 }
@@ -37,6 +37,74 @@
   left: -4px;
   top: 17px;
   background-color: black;
+}
+.smallCircle2 {
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  left: -4px;
+  top: 17px;
+  background-color: black;
+}
+.smalldots {
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  border: 2px solid black;
+  left: -4px;
+  top: 17px;
+  background-color: white;
+  z-index: 3;
+}
+#firstSmallDot {
+  top: 14px;
+}
+#secondSmallDot {
+  top: -6px;
+}
+#thirdSmallDot {
+  left: 41px;
+  top: 36px;
+}
+#fourthSmallDot {
+  left: 41px;
+  top: -3px;
+}
+#fifthSmallDot {
+  top: 8px;
+  left: -32px;
+}
+.switchLine1 {
+  width: 33px;
+  height: 2px;
+  background-color: black;
+  top: -3px;
+  right: 0px;
+  transform-origin: 100% 100%;
+  transform: rotate(50deg);
+}
+.switchLine1On {
+  transform: rotate(7deg);
+}
+.switchLine2 {
+  height: 33px;
+  width: 2px;
+  background-color: black;
+  top: -30px;
+  left: 44px;
+  transform-origin: 100% 100%;
+  transform: rotate(50deg);
+}
+.switchLine2On {
+  transform: rotate(0deg);
+}
+#finishDot1 {
+  left: -4px;
+  top: 15px;
+}
+#finishDot2 {
+  left: -4px;
+  top: 20px;
 }
 #firstLine {
   left: 98px;
@@ -53,68 +121,165 @@
 #fifthLine {
   left: 478px;
 }
-.endVerticalLine {
-  height: 130px;
+.endVertical {
   border: 2px solid black;
   left: 600px;
-  top: 20px; 
+  top: 20px;
+}
+.endVerticalTop {
+  border: 2px solid black;
+  left: 565px;
+  top: 20px;
+}
+.endVerticalLineTop {
+  height: 17px;
+}
+.endVerticalLineBottom1 {
+  height: 15px;
+  top: 70px;
+}
+.endVerticalLineBottom2 {
+  height: 40px;
+  top: 95px;
+}
+.endVerticalLineBottom3 {
+  height: 20px;
+  top: 168px;
+}
+.endVerticalLineBottom4 {
+  height: 27px;
+  top: 197px;
+}
+#inputHorizontalLine1 {
+  width: 50px;
+  border: 2px solid black;
+  top: 27px;
+  left: -52px;
+}
+#inputHorizontalLine2 {
+  width: 40px;
+  border: 2px solid black;
+  top: 22px;
+  left: 0px;
+}
+#inputHorizontalLine3 {
+  width: 40px;
+  border: 2px solid black;
+  top: 18px;
+  left: 0px;
+}
+#bottomEndOutput {
+  left: 43px;
+  top: 0px;
+  height: 22px;
+}
+#topEndOutput {
+  left: 43px;
+  top: 18px;
+  height: 22px;
 }
 .arrow {
   position: relative;
 }
+.arrowTop {
+  top: -62px;
+}
+.arrowFirstLeft {
+  top: -162px;
+  left: 12px;
+}
 #input {
-  top: 95px;
-  left: 25px;
+  top: 185px;
+  left: 510px;
 }
 #inputValue {
-  top: 115px;
-  left: 45px;
+  top: 185px;
+  left: 570px;
 }
 #start {
   top: 140px;
-  left: 65px;
+  left: 140px;
 }
 #output {
-  top: 95px;
+  top: 60px;
   left: 615px;
 }
 #outputValue {
-  top: 115px;
-  left: 635px;
+  top: 60px;
+  left: 675px;
+}
+#outputCoder {
+  width: 110px;
+  top: 105px;
+  left: 700px;
+}
+#outputCoderValue {
+  width: 110px;
+  top: 125px;
+  left: 740px;
 }
 #finish {
   top: 140px;
-  left: 583px;
+  left: 568px;
 }
 #finish2 {
   top: 140px;
-  left: 660px;
+  left: 700px;
+}
+.endLine {
+  width: 43px;
+  height: 3px;
+  right: -17px;
+  top: 11px;
+  background: black;
 }
 .arrowRightFirst {
-  width: 17px;
-  top: 7px;
-  border: 2px solid black;
-  transform: rotate(25deg);
+  width: 10px;
+  top: 9px;
+  left: 7px;
+  border: 1px solid black;
+  transform: rotate(35deg);
 }
 .arrowRightSecond {
-  width: 17px;
-  top: 14px;
-  border: 2px solid black;
-  transform: rotate(-25deg);
+  width: 10px;
+  top: 15px;
+  left: 7px;
+  border: 1px solid black;
+  transform: rotate(-35deg);
 }
 .arrowBottomFirst {
   width: 17px;
   left: -14px;
   top: 129px;
-  border: 2px solid black;
+  border: 1px solid black;
   transform: rotate(55deg);
 }
 .arrowBottomSecond {
   width: 17px;
-  left: -4px;
+  left: -2px;
   top: 129px;
-  border: 2px solid black;
+  border: 1px solid black;
   transform: rotate(-55deg);
+}
+.arrowUpFirst {
+  width: 10px;
+  left: -10px;
+  top: 2px;
+  border: 1px solid black;
+  transform: rotate(-55deg);
+}
+.arrowUpSecond {
+  width: 10px;
+  left: -2px;
+  top: 2px;
+  border: 1px solid black;
+  transform: rotate(55deg);
+}
+.arrowRight1 {
+  top: 5px;
+}
+.arrowRight1 {
+  top: 25px;
 }
 .circle {
   width: 26px;
@@ -122,6 +287,8 @@
   border: 3px solid black;
   border-radius: 100%;
   background-color: white;
+  text-align: center;
+  line-height: 26px;
 }
 .circleInside {
   width: 26px;
@@ -133,8 +300,15 @@
   background-color: white;
 }
 #firstCircle {
-  top: 137px;
   left: 84px;
+}
+#lastCircleTop {
+  left: 550px;
+  top: 40px;
+}
+#lastCircleBottom {
+  left: 586px;
+  top: 137px;
 }
 .pBox {
   width: 28px;
@@ -162,4 +336,10 @@
 }
 #p4 {
   left: 512px;
+}
+.flipFlop {
+  top: 75px;
+  left: -14px;
+  background-color: white;
+  z-index: 2;
 }

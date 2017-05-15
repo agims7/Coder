@@ -18,12 +18,20 @@ export class GraphComponent implements OnInit {
   private sequencex4: any;
   private sequencex5: any;
 
-  // public P: any = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
   constructor(
     private tactsService: TactsService,
     private appService: AppService
   ) { }
+
+  copy(o) {
+    let output, v, key;
+    output = Array.isArray(o) ? [] : {};
+    for (key in o) {
+      v = o[key];
+      output[key] = (typeof v === "object") ? this.copy(v) : v;
+    }
+    return output;
+  }
 
   setSeq5() {
     this.tactsService.P[4] = parseInt(this.tactsService.P[3]);
@@ -60,8 +68,35 @@ export class GraphComponent implements OnInit {
     } else { this.tactsService.P[i] = 0; }
   }
 
+  calculateAll() {
+    let allTacts = this.appService.polynomialGx + this.appService.polynomialHx;
+    for (let i = 0; i < allTacts; i++) {
+      this.nextTact();
+    }
+    let finalArray = this.appService.polynomialBinaryScopeCx.reverse();
+    this.tactsService.outputCoderFull = this.copy(finalArray);
+    this.resetAfterCalculation();
+  }
+
+  resetAfterCalculation() {
+    this.iteration = 1;
+    this.visibility = false;
+    this.buttonDisabled = false;
+    this.oldOutput = 0;
+    this.appService.input = 0;
+    this.tactsService.tactActive = 0
+    this.tactsService.P = [0, 0, 0, 0, 0];
+    this.tactsService.output = 0;
+
+    for (let i = 0; i < this.appService.polynomialRatioGx; i++) {
+      this.appService.polynomialBinaryScopeHGx[i] = '0';
+    }
+  }
 
   nextTact() {
+    if (this.tactsService.outputCoderFull) {
+      this.tactsService.outputCoder = this.tactsService.outputCoderFull[this.iteration - 1];
+    }
     if (this.tactsService.tactActive <= this.tactsService.tacts) {
       this.tactsService.tactActive++;
       this.oldOutput = this.tactsService.output;
@@ -475,6 +510,7 @@ export class GraphComponent implements OnInit {
               this.setSeq5();
             }
             this.tactsService.output = this.tactsService.P[4];
+
             break;
           case "110011":
             console.log('case 110011');
@@ -642,13 +678,13 @@ export class GraphComponent implements OnInit {
     }
 
     this.disableButton();
-    this.logInfo();
 
     if (this.tactsService.tactActive > this.tactsService.tacts) {
       this.setRest();
       this.clearOutput();
       this.getFinalPolynomial();
       this.visibility = true;
+      this.logInfo();
     }
   }
 
@@ -658,7 +694,7 @@ export class GraphComponent implements OnInit {
     for (let i = lastElement; i >= 0; i--) {
       if (this.appService.polynomialBinaryScopeHGx[i] === '1') {
         if (i === 1) {
-         this.appService.finalPolynomial += 'x+';
+          this.appService.finalPolynomial += 'x+';
         } else if (i === 0) {
           this.appService.finalPolynomial += '1';
         } else {
@@ -674,9 +710,7 @@ export class GraphComponent implements OnInit {
       if (this.appService.polynomialRatioGx === i) {
         this.appService.polynomialBinaryScopeCx.splice(0, i);
         let j = i - 1;
-        console.log(j)
         while (j < i && j >= 0) {
-          console.log(this.tactsService.P[j])
           this.appService.polynomialBinaryScopeCx.unshift(this.tactsService.P[j].toString());
           j--;
         }
@@ -706,6 +740,8 @@ export class GraphComponent implements OnInit {
     console.log('p0:', this.tactsService.P[0]);
     console.log('p1:', this.tactsService.P[1]);
     console.log('p2:', this.tactsService.P[2]);
+    console.log('p2:', this.tactsService.P[3]);
+    console.log('p2:', this.tactsService.P[4]);
     console.log('output:', this.tactsService.output);
     console.log('oldOutput:', this.oldOutput);
     console.log('this.tactsService.tactActive:', this.tactsService.tactActive);
@@ -715,6 +751,7 @@ export class GraphComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.calculateAll();
     // this.appService.updateTitle('Graph');
     this.appService.pageCode = false;
     this.appService.pageGraph = true;

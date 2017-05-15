@@ -98,7 +98,15 @@ export class CoderComponent implements OnInit {
     // TO TRZEBA SPRAWDZIC!!!!
   }
 
+  resetTacts() {
+    this.appService.input = 0;
+    this.tactsService.tactActive = 0
+    this.tactsService.P = [0, 0, 0, 0, 0];
+    this.tactsService.output = 0;
+  }
+
   checkPolynomialRatio() {
+    this.resetTacts();
     console.log('polynomialHx ', this.appService.polynomialHx)
     console.log('polynomialGx ', this.appService.polynomialGx)
     if (this.appService.polynomialHx >= this.appService.polynomialGx) {

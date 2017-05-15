@@ -1,17 +1,21 @@
 <button [hidden]="buttonDisabled" class="nextTact" type="submit" (click)="nextTact()">Takt +1</button>
 
+<button [hidden]="buttonDisabled" class="nextTact" type="submit" (click)="calculateAll()">Full calculation</button>
+
 <table *ngIf="appService.polynomialRatioGx === 1">
     <tr>
         <th>Takt</th>
         <th>Wejście</th>
         <th>P0</th>
         <th>Wyjście</th>
+        <th>Wyjście kodera</th>
     </tr>
     <tr>
         <td>{{ tactsService.tactActive }}</td>
         <th>{{ appService.input }}</th>
         <th>{{ tactsService.P[0] }}</th>
         <th>{{ tactsService.output }}</th>
+        <th>{{ this.outputCoder }}</th>
     </tr>
 </table>
 
@@ -22,6 +26,7 @@
         <th>P0</th>
         <th>P1</th>
         <th>Wyjście</th>
+        <th>Wyjście kodera</th>
     </tr>
     <tr>
         <td>{{ tactsService.tactActive }}</td>
@@ -29,6 +34,7 @@
         <th>{{ tactsService.P[0] }}</th>
         <th>{{ tactsService.P[1] }}</th>
         <th>{{ tactsService.output }}</th>
+        <th>{{ this.outputCoder }}</th>
     </tr>
 </table>
 
@@ -40,6 +46,7 @@
         <th>P1</th>
         <th>P2</th>
         <th>Wyjście</th>
+        <th>Wyjście kodera</th>
     </tr>
     <tr>
         <td>{{ tactsService.tactActive }}</td>
@@ -48,6 +55,7 @@
         <th>{{ tactsService.P[1] }}</th>
         <th>{{ tactsService.P[2] }}</th>
         <th>{{ tactsService.output }}</th>
+        <th>{{ this.outputCoder }}</th>
     </tr>
 </table>
 
@@ -60,6 +68,7 @@
         <th>P2</th>
         <th>P3</th>
         <th>Wyjście</th>
+        <th>Wyjście kodera</th>
     </tr>
     <tr>
         <td>{{ tactsService.tactActive }}</td>
@@ -69,6 +78,7 @@
         <th>{{ tactsService.P[2] }}</th>
         <th>{{ tactsService.P[3] }}</th>
         <th>{{ tactsService.output }}</th>
+        <th>{{ this.outputCoder }}</th>
     </tr>
 </table>
 
@@ -82,6 +92,7 @@
         <th>P3</th>
         <th>P4</th>
         <th>Wyjście</th>
+        <th>Wyjście kodera</th>
     </tr>
     <tr>
         <td>{{ tactsService.tactActive }}</td>
@@ -92,6 +103,7 @@
         <th>{{ tactsService.P[3] }}</th>
         <th>{{ tactsService.P[4] }}</th>
         <th>{{ tactsService.output }}</th>
+        <th>{{ this.outputCoder }}</th>
     </tr>
 </table>
 
