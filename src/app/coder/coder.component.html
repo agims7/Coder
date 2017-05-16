@@ -1,95 +1,106 @@
 <div class="coderInput">
-  <h3 class="title">Ustaw wielomian informacyjny h(x):</h3>
 
-  <h4>Podaj stopień wielomianu informacyjnego h(x):</h4>
+  <div class="leftSide">
+    <h3 class="title">Wielomian informacyjny h(x):</h3>
 
-  <input type="text" placeholder="x^9+x^5+x^2+1" [(ngModel)]="inputHx" />
-  <button (click)="updateVariablesHx()">Przelicz</button>
-  <div *ngIf="warningHx" class="warning">
-    <span class="fa fa-exclamation-triangle"></span>
-    <strong>Podano za mały lub zbyt duży stopień wielomianu</strong>
-    <span class="fa fa-exclamation-triangle"></span>
-  </div>
+    <h4>Wpisz wielomian informacyjny h(x):</h4>
 
-  <p>Lub</p>
+    <input type="text" placeholder="x^9+x^5+x^2+1" [(ngModel)]="inputHx" />
+    <button (click)="updateVariablesHx()">Przelicz</button>
+    <div *ngIf="warningHx" class="warning">
+      <span class="fa fa-exclamation-triangle"></span>
+      <strong>Podano za mały lub zbyt duży stopień wielomianu</strong>
+      <span class="fa fa-exclamation-triangle"></span>
+    </div>
 
-  <input class="firstInput" type="number" min="{{minHxRange}}" max="{{maxHxRange}}" [(ngModel)]="appService.polynomialHx" value="polynomialHx"
-    (ngModelChange)="updateHxScope()" />
+    <p class="block">lub podaj jego stopień</p>
 
-  <div class="bitInputs">
-    <span class="range" *ngFor="let range of appService.polynomialHxRange; let j = index">
+    <input class="firstInput" type="number" min="{{minHxRange}}" max="{{maxHxRange}}" [(ngModel)]="appService.polynomialHx" value="polynomialHx"
+      (ngModelChange)="updateHxScope()" />
+
+    <div class="inline">
+      <div class="bitInputs">
+        <span class="range" *ngFor="let range of appService.polynomialHxRange; let j = index">
   <span class="bit">Bit {{ appService.polynomialHxRange[j] + 1 }}</span>
-    <span class="states" *ngFor="let binaryState of binaryScope; let i = index">
+        <span class="states" *ngFor="let binaryState of binaryScope; let i = index">
       <input id="binaryState{{ i }}" [(ngModel)]="appService.selectedBinaryScopeHx[j]" name="selectedBinaryScopeHx{{ j }}" type="radio" value="{{ i }}" />    
       <label for="binaryState{{ i }}">{{ binaryState }}</label>
   </span>
-    </span>
-  </div>
+        </span>
+      </div>
+    </div>
 
-  <div class="hxSection">
-    <p>Słowo h(x):</p>
-    <div class="hxcodes">
-      <span class="hxcode" *ngFor="let item of appService.selectedBinaryScopeHx; let x = index">
+
+    <div class="hxSection">
+      <p class="block">Słowo h(x):</p>
+      <div class="hxcodes">
+        <span class="hxcode" *ngFor="let item of appService.selectedBinaryScopeHx; let x = index">
     {{item}}
     </span>
+      </div>
     </div>
   </div>
 
+  <div class="rightSide">
+    <h3 class="title">Wielomian generujący g(x):</h3>
 
-  <h3 class="title">Ustaw wielomian generujący g(x):</h3>
+    <h4>Wpisz wielomian generujacy g(x):</h4>
 
-  <h4>Podaj stopień wielomianu generujacego g(x):</h4>
+    <input type="text" placeholder="x^5+x^4+x^2+1" [(ngModel)]="inputGx" />
+    <button (click)="updateVariablesGx()">Przelicz</button>
+    <div *ngIf="warningGx" class="warning">
+      <span class="fa fa-exclamation-triangle"></span>
+      <strong>Podano za mały lub zbyt duży stopień wielomianu</strong>
+      <span class="fa fa-exclamation-triangle"></span>
+    </div>
 
-  <input type="text" placeholder="x^5+x^4+x^2+1" [(ngModel)]="inputGx" />
-  <button (click)="updateVariablesGx()">Przelicz</button>
-  <div *ngIf="warningGx" class="warning">
-    <span class="fa fa-exclamation-triangle"></span>
-    <strong>Podano za mały lub zbyt duży stopień wielomianu</strong>
-    <span class="fa fa-exclamation-triangle"></span>
-  </div>
+    <p class="block">lub podaj jego stopień</p>
 
-  <p>Lub</p>
+    <input class="firstInput" type="number" min="{{minGxRange}}" max="{{maxGxRange}}" [(ngModel)]="appService.polynomialGx" value="polynomialGx"
+      (ngModelChange)="updateGxScope()" />
 
-  <input class="firstInput" type="number" min="{{minGxRange}}" max="{{maxGxRange}}" [(ngModel)]="appService.polynomialGx" value="polynomialGx"
-    (ngModelChange)="updateGxScope()" />
-
-  <div class="bitInputs">
-    <span class="range" *ngFor="let range of appService.polynomialGxRange; let j = index">
+    <div class="bitInputs">
+      <span class="range" *ngFor="let range of appService.polynomialGxRange; let j = index">
   <span class="bit">Bit {{ appService.polynomialGxRange[j] + 1 }}</span>
-    <span class="states" *ngFor="let binaryState of binaryScope; let i = index">
+      <span class="states" *ngFor="let binaryState of binaryScope; let i = index">
       <input id="binaryState{{ i }}" [(ngModel)]="appService.selectedBinaryScopeGx[j]" name="selectedBinaryScopeGx{{ j }}" type="radio" value="{{ i }}"/>    
       <label for="binaryState{{ i }}">{{ binaryState }}</label>
   </span>
-    </span>
-  </div>
+      </span>
+    </div>
 
-  <div class="gxSection">
-    <p>Słowo g(x):</p>
-    <div class="gxcodes">
-      <span class="gxcode" *ngFor="let item of appService.selectedBinaryScopeGx; let x = index">
+    <div class="gxSection">
+      <p class="block">Słowo g(x):</p>
+      <div class="gxcodes">
+        <span class="gxcode" *ngFor="let item of appService.selectedBinaryScopeGx; let x = index">
     {{item}}
     </span>
+      </div>
     </div>
-  </div>
 
-
-  <button type="submit" (click)="checkPolynomialRatio()">Sprawdz słowo hg(x)</button>
-
-  <button type="reset" (click)="resetAll()">Reset</button>
-
-  <div *ngIf="visibility" class="hgxSection">
-    <p>Słowo h<span class="polynomialPower">g</span> (x):</p>
-    <div class="hgxcodes">
-      <span class="hgxcode" *ngFor="let item of appService.polynomialBinaryScopeHGx; let x = index">
-    {{item}}
-    </span>
-    </div>
-    <p>Teraz przejdź na widok "Graph"</p>
-  </div>
-
-  <div *ngIf="wrongPolynomial" class="warning">
-    <span class="fa fa-exclamation-triangle"></span>
-    <strong>Wielomian słowa generującego jest większy od wielomianu słowa informacyjnego!</strong>
-    <span class="fa fa-exclamation-triangle"></span>
   </div>
 </div>
+
+<div class="block center topMargin">
+<button type="submit" (click)="checkPolynomialRatio()">Sprawdz słowo hg(x)</button>
+
+<button type="reset" (click)="resetAll()">Reset</button>
+</div>
+
+<div *ngIf="visibility" class="hgxSection">
+  <p>Słowo h<span class="polynomialPower">g</span> (x):</p>
+  <div class="hgxcodes">
+    <span class="hgxcode" *ngFor="let item of polynomialHGxbeforeTacts; let x = index">
+    {{item}}
+    </span>
+  </div>
+  <p class="finalBeforeTacts">{{ finalPolynomialBeforeTacts }}</p>
+</div>
+
+<div *ngIf="wrongPolynomial" class="warning">
+  <span class="fa fa-exclamation-triangle"></span>
+  <strong>Wielomian słowa generującego jest większy od wielomianu słowa informacyjnego!</strong>
+  <span class="fa fa-exclamation-triangle"></span>
+</div>
+
+<app-graph class="graphClass" *ngIf="visibility"></app-graph>

@@ -25,6 +25,9 @@ export class CoderComponent implements OnInit {
   private newGxValue: string[];
   private max: number;
   private wrongPolynomial: boolean = false;
+  
+  private polynomialHGxbeforeTacts: any;
+  private finalPolynomialBeforeTacts: any;
 
   constructor(
     private appService: AppService,
@@ -98,7 +101,15 @@ export class CoderComponent implements OnInit {
     // TO TRZEBA SPRAWDZIC!!!!
   }
 
+  resetTacts() {
+    this.appService.input = 0;
+    this.tactsService.tactActive = 0
+    this.tactsService.P = [0, 0, 0, 0, 0];
+    this.tactsService.output = 0;
+  }
+
   checkPolynomialRatio() {
+    this.resetTacts();
     console.log('polynomialHx ', this.appService.polynomialHx)
     console.log('polynomialGx ', this.appService.polynomialGx)
     if (this.appService.polynomialHx >= this.appService.polynomialGx) {
@@ -115,6 +126,8 @@ export class CoderComponent implements OnInit {
         while (this.appService.polynomialBinaryScopeHGx[this.appService.polynomialBinaryScopeHGx.length - 1] === '0') {
           this.appService.polynomialBinaryScopeHGx.pop();
         }
+        this.polynomialHGxbeforeTacts = this.copy(this.appService.polynomialBinaryScopeHGx);
+        this.getFinalPolynomialBeforeTacts();
         console.log('polynomialHx ', this.appService.polynomialHx)
         console.log('polynomialGx ', this.appService.polynomialGx)
         console.log('polynomialHxRange ', this.appService.polynomialHxRange)
@@ -142,6 +155,23 @@ export class CoderComponent implements OnInit {
     this.checkPolynomialRatioForHTML();
     this.resetPolynomialFlipFlops();
     this.checkPolynomialFlipFlops();
+  }
+
+    getFinalPolynomialBeforeTacts() {
+    this.finalPolynomialBeforeTacts = "";
+    let lastElement = this.polynomialHGxbeforeTacts.length - 1;
+    for (let i = lastElement; i >= 0; i--) {
+      if (this.polynomialHGxbeforeTacts[i] === '1') {
+        if (i === 1) {
+          this.finalPolynomialBeforeTacts += 'x+';
+        } else if (i === 0) {
+          this.finalPolynomialBeforeTacts += '1';
+        } else {
+          this.finalPolynomialBeforeTacts += `x^${i}+`;
+        }
+      }
+    }
+    this.finalPolynomialBeforeTacts = this.finalPolynomialBeforeTacts.slice(0,this.finalPolynomialBeforeTacts.length - 1);
   }
 
   checkPolynomialRatioForHTML() {
@@ -257,6 +287,13 @@ export class CoderComponent implements OnInit {
     this.appService.polynomialBinaryScopeHGx = [];
     this.tactsService.tactActive = 0;
     this.tactsService.tacts = 0;
+    this.appService.input = 0;
+    this.tactsService.P = [0, 0, 0, 0, 0];
+    this.tactsService.output = 0;
+    this.tactsService.switch = false;
+    
+    this.finalPolynomialBeforeTacts = "";
+
     this.resetPolynomialFlipFlops();
   }
 

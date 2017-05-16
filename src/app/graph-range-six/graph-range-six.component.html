@@ -1,74 +1,146 @@
 <div id=parrent>
-  <p id="input">Wejście</p>
-  <p id="inputValue">{{ appService.input }}</p>
-  <p id="output">Wyjście</p>
-  <p id="outputValue">{{ tactsService.output }}</p>
+  <p id="input">Wejście:</p>
+  <p id="inputValue" class="red">{{ appService.input }}</p>
+  <p id="output">Wyjście:</p>
+  <p id="outputValue" class="red">{{ tactsService.output }}</p>
+  <p id="outputCoder">Wyjście - koder:</p>
+  <p id="outputCoderValue" class="red">{{ tactsService.outputCoder }}</p>
   <div class=" topLine"></div>
   <div class=" bottomLine"></div>
   <div id="firstLine" class="verticalLine"></div>
-  <div class="endVerticalLine"></div>
+  <div class="endVerticalTop endVerticalLineTop"></div>
+  <div class="endVerticalTop endVerticalLineBottom1">  
+    <div class="arrow arrowRight2">
+      <div class="arrowUpFirst"></div>
+      <div class="arrowUpSecond"></div>
+    </div>
+    <div id="firstSmallDot" class="smalldots"></div>
+  </div>
+  <div class="endVertical endVerticalLineBottom2">
+    <div class="arrow arrowRight1">
+      <div class="arrowUpFirst"></div>
+      <div class="arrowUpSecond"></div>
+    </div>
+    <div class="arrow arrowRight2">
+      <div class="arrowUpFirst"></div>
+      <div class="arrowUpSecond"></div>
+    </div>
+    <div id="secondSmallDot" class="smalldots"></div>
+    <div class="smallCircle2" id="finishDot1"></div> 
+    <div id="inputHorizontalLine3"></div>
+    <div class="switchLine1" [ngClass]="{'switchLine1On': tactsService.switch}"></div>
+    <div class="endVertical" id="topEndOutput"></div>
+    <div id="thirdSmallDot" class="smalldots"></div>
+  </div>
+  <div class="endVertical endVerticalLineBottom3">
+    <div class="arrow">
+      <div class="arrowUpFirst"></div>
+      <div class="arrowUpSecond"></div>
+    </div>
+    <div class="endVertical" id="bottomEndOutput"></div>
+    <div class="smallCircle2" id="finishDot2"></div>
+    <div id="fourthSmallDot" class="smalldots"></div>
+    <div class="switchLine2" [ngClass]="{'switchLine2On': tactsService.switch}"></div>
+    <div id="inputHorizontalLine2"></div>
+  </div>
+  <div class="endVertical endVerticalLineBottom4">
+    <div id="inputHorizontalLine1"></div>
+    <div class="arrow">
+      <div class="arrowUpFirst"></div>
+      <div class="arrowUpSecond"></div>
+    </div>
+  </div>
   <div id="start" class="arrow">
     <div class="arrowRightFirst"></div>
     <div class="arrowRightSecond"></div>
   </div>
-  <div id="firstCircle" class="circle"></div>
+  <div id="firstCircle" class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">0</span>
+  <div class="arrow arrowFirstLeft">
+      <div class="arrowBottomFirst"></div>
+      <div class="arrowBottomSecond"></div>
+    </div>
+  </div>
+  <div id="lastCircleTop" class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">5</span></div>
+  <div id="lastCircleBottom" class="circle flipFlop centerCircle">+</div>
   <div id="finish" class="arrow">
     <div class="arrowRightFirst"></div>
     <div class="arrowRightSecond"></div>
   </div>
   <div id="finish2" class="arrow">
+    <div class="endLine"></div>
     <div class="arrowRightFirst"></div>
     <div class="arrowRightSecond"></div>
+    <div id="fifthSmallDot" class="smalldots"></div>
   </div>
-  <div id="p0" class="pBox center">{{ tactsService.P[0] }}
-    <p class="description">P0</p>
+  <div id="p0" class="pBox center"><span class="center red">{{ tactsService.P[0] }}</span>
+    <p class="description">P<span class="flipFlopPower">0</span></p>
   </div>
   <div *ngIf="appService.htmlRatioThree && appService.htmlFlipFlopThree" id="secondLine">
+    <div class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">1</span></div>
     <div class="smallCircle"></div>
     <div class="verticalLine"></div>
     <div class="circleInside centerCircle">+</div>
+    <div class="arrow arrowTop">
+      <div class="arrowBottomFirst"></div>
+      <div class="arrowBottomSecond"></div>
+    </div>
     <div class="arrow">
       <div class="arrowBottomFirst"></div>
       <div class="arrowBottomSecond"></div>
     </div>
   </div>
-  <div *ngIf="appService.htmlRatioThree" id="p1" class="pBox center">{{ tactsService.P[1] }}
-    <p class="description">P1</p>
+  <div *ngIf="appService.htmlRatioThree" id="p1" class="pBox center"><span class="center red">{{ tactsService.P[1] }}</span>
+    <p class="description">P<span class="flipFlopPower">1</span></p>
   </div>
   <div *ngIf="appService.htmlRatioFour && appService.htmlFlipFlopFour" id="thirdLine">
+    <div class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">2</span></div>
     <div class="smallCircle"></div>
     <div class="verticalLine"></div>
     <div class="circleInside centerCircle">+</div>
+    <div class="arrow arrowTop">
+      <div class="arrowBottomFirst"></div>
+      <div class="arrowBottomSecond"></div>
+    </div>
     <div class="arrow">
       <div class="arrowBottomFirst"></div>
       <div class="arrowBottomSecond"></div>
     </div>
   </div>
-  <div *ngIf="appService.htmlRatioFour" id="p2" class="pBox center">{{ tactsService.P[2] }}
-    <p class="description">P2</p>
+  <div *ngIf="appService.htmlRatioFour" id="p2" class="pBox center"><span class="center red">{{ tactsService.P[2] }}</span>
+    <p class="description">P<span class="flipFlopPower">2</span></p>
   </div>
   <div *ngIf="appService.htmlRatioFive && appService.htmlFlipFlopFive" id="fourthLine">
+    <div class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">3</span></div>
     <div class="smallCircle"></div>
     <div class="verticalLine"></div>
     <div class="circleInside centerCircle">+</div>
+    <div class="arrow arrowTop">
+      <div class="arrowBottomFirst"></div>
+      <div class="arrowBottomSecond"></div>
+    </div>
     <div class="arrow">
       <div class="arrowBottomFirst"></div>
       <div class="arrowBottomSecond"></div>
     </div>
   </div>
-  <div *ngIf="appService.htmlRatioFive" id="p3" class="pBox center">{{ tactsService.P[3] }}
-    <p class="description">P3</p>
+  <div *ngIf="appService.htmlRatioFive" id="p3" class="pBox center"><span class="center red">{{ tactsService.P[3] }}</span>
+    <p class="description">P<span class="flipFlopPower">3</span></p>
   </div>
   <div *ngIf="appService.htmlRatioSix && appService.htmlFlipFlopSix" id="fifthLine">
+    <div class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">4</span></div>
     <div class="smallCircle"></div>
     <div class="verticalLine"></div>
     <div class="circleInside centerCircle">+</div>
+    <div class="arrow arrowTop">
+      <div class="arrowBottomFirst"></div>
+      <div class="arrowBottomSecond"></div>
+    </div>
     <div class="arrow">
       <div class="arrowBottomFirst"></div>
       <div class="arrowBottomSecond"></div>
     </div>
   </div>
-  <div *ngIf="appService.htmlRatioSix" id="p4" class="pBox center">{{ tactsService.P[4] }}
-    <p class="description">P4</p>
+  <div *ngIf="appService.htmlRatioSix" id="p4" class="pBox center"><span class="center red">{{ tactsService.P[4] }}</span>
+    <p class="description">P<span class="flipFlopPower">4</span></p>
   </div>
 </div>
