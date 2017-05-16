@@ -189,11 +189,11 @@
   left: 12px;
 }
 #input {
-  top: 185px;
-  left: 510px;
+  top: 195px;
+  left: 515px;
 }
 #inputValue {
-  top: 185px;
+  top: 189px;
   left: 570px;
 }
 #start {
@@ -201,22 +201,22 @@
   left: 140px;
 }
 #output {
-  top: 60px;
-  left: 615px;
+  top: 64px;
+  left: 600px;
 }
 #outputValue {
-  top: 60px;
-  left: 675px;
+  top: 58px;
+  left: 655px;
 }
 #outputCoder {
   width: 110px;
-  top: 105px;
-  left: 700px;
+  top: 122px;
+  left: 658px;
 }
 #outputCoderValue {
   width: 110px;
-  top: 125px;
-  left: 740px;
+  top: 117px;
+  left: 717px;
 }
 #finish {
   top: 140px;
@@ -316,11 +316,45 @@
   border: 3px solid black;
   top: 136px;
   background-color: white;
+  p {
+    color: black;
+    font-weight: normal;
+  }
+  .center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+.flipFlop {
+  top: 75px;
+  left: -14px;
+  background-color: white;
+  z-index: 2;
+}
+.gElement {
+  left: 40%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.flipFlopPower {
+    vertical-align: sub;
+    font-size: 10px;
+    left: 14px;
+    top: 3px;
+}
+.red {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
 }
 .description {
   position: relative;
-  top: -70px;
+  top: -30px;
   font-weight: bold;
+  .flipFlopPower {
+    left: 18px;
+  }
 }
 #p0 {
   left: 160px;
@@ -336,10 +370,4 @@
 }
 #p4 {
   left: 512px;
-}
-.flipFlop {
-  top: 75px;
-  left: -14px;
-  background-color: white;
-  z-index: 2;
 }

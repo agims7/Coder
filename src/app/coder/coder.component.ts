@@ -287,6 +287,13 @@ export class CoderComponent implements OnInit {
     this.appService.polynomialBinaryScopeHGx = [];
     this.tactsService.tactActive = 0;
     this.tactsService.tacts = 0;
+    this.appService.input = 0;
+    this.tactsService.P = [0, 0, 0, 0, 0];
+    this.tactsService.output = 0;
+    this.tactsService.switch = false;
+    
+    this.finalPolynomialBeforeTacts = "";
+
     this.resetPolynomialFlipFlops();
   }
 

@@ -8,6 +8,7 @@ export class TactsService {
   public output = 0;
   public outputCoderFull: any;
   public outputCoder: number = 0;
+  public switch: boolean = false;
 
   constructor() { }
 

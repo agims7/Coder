@@ -94,6 +94,7 @@ export class GraphComponent implements OnInit {
     this.tactsService.tactActive = 0
     this.tactsService.P = [0, 0, 0, 0, 0];
     this.tactsService.output = 0;
+    this.tactsService.switch = false;
 
     for (let i = 0; i < this.appService.polynomialRatioGx; i++) {
       this.appService.polynomialBinaryScopeHGx[i] = '0';
@@ -685,6 +686,10 @@ export class GraphComponent implements OnInit {
     }
 
     this.disableButton();
+
+    if (this.tactsService.tactActive === this.appService.polynomialHx) {
+      this.tactsService.switch = true;
+    }
 
     if (this.tactsService.tactActive > this.tactsService.tacts) {
       this.setRest();
