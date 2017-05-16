@@ -24,9 +24,45 @@ button {
     padding: 6px 10px;
     text-decoration: none;
     cursor: pointer;
-    margin: 15px 0 5px;
+    margin: 10px 0 5px;
     &:hover {
         background: grey;
         text-decoration: none;
+    }
+}
+
+.leftSide {
+    width: 50%;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    @media all and (max-width: 965px) {
+        width: 100%
+    }
+}
+.rightSide {
+    width: 40%;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    @media all and (max-width: 965px) {
+        width: 100%
+    }
+}
+
+.leftSideNarrow {
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    @media all and (max-width: 1380px) {
+        width: 100%
+    }
+}
+.rightSideWide {
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    @media all and (max-width: 1380px) {
+        width: 100%
     }
 }

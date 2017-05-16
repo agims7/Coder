@@ -68,7 +68,7 @@ export class GraphComponent implements OnInit {
     } else { this.tactsService.P[i] = 0; }
   }
 
-  calculateAll() {
+  calculateForInit() {
     let allTacts = this.appService.polynomialGx + this.appService.polynomialHx;
     for (let i = 0; i < allTacts; i++) {
       this.nextTact();
@@ -76,6 +76,13 @@ export class GraphComponent implements OnInit {
     let finalArray = this.appService.polynomialBinaryScopeCx.reverse();
     this.tactsService.outputCoderFull = this.copy(finalArray);
     this.resetAfterCalculation();
+  }
+
+  calculateAll() {
+    let allTacts = this.appService.polynomialGx + this.appService.polynomialHx;
+    for (let i = 0; i < allTacts; i++) {
+      this.nextTact();
+    }
   }
 
   resetAfterCalculation() {
@@ -751,7 +758,7 @@ export class GraphComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.calculateAll();
+    this.calculateForInit();
     // this.appService.updateTitle('Graph');
     this.appService.pageCode = false;
     this.appService.pageGraph = true;

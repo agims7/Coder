@@ -3,8 +3,12 @@ p {
     font-family: 'Roboto Slab', serif;
 }
 
+h3 {
+    font-weight: bold;
+}
+
 .coderInput {
-    padding: 20px 50px;
+    display: flex;    
     .warning {
         display: inline-block;
         margin-left: 15px;
@@ -12,43 +16,51 @@ p {
         -webkit-animation: blink 1s infinite;
         animation: blink 1s infinite;
     }
+    @media all and (max-width: 965px) {
+        flex-wrap: wrap;
+    }
 }
 
 .title {
-    margin: 15px 0;
+    margin: 5px 0;
+}
+
+.inline {
+    display: inline;
+    margin: 0 25px;
+    font-size: 12px;
 }
 
 .firstInput {
     background: white;
     border: 1px solid black;
     color: black;
-    padding: 6px 10px;
+    padding: 3px 10px;
     min-width: 50px;
     text-decoration: none;
     margin: 15px 0 5px;
 }
 
 .bitInputs {
-    border-top: 1px solid black;
-    margin: 20px 0;
-    padding: 13px 0;
+    margin: 5px 0;
+    padding: 4px 0;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: center;
     flex-wrap: wrap;
     .range {
         display: inline-block;
-        width: 60px;
+        width: 35px;
         text-align: center;
-        margin: 2px 0px;
-        padding: 0 15px;
+        font-size: 12px;
+        padding: 0 5px;
         border-left: 1px solid black;
         &:last-of-type {
             border-left: none;
         }
         .bit {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 1px;
         }
     }
 }
@@ -60,15 +72,16 @@ p {
 .hxSection,
 .gxSection,
 .hgxSection {
-    width: 250px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     .hxcodes,
     .gxcodes,
     .hgxcodes {
         margin: 5px 0;
         display: flex;
         flex-direction: row-reverse;
+        justify-content: center;
         .hxcode,
         .gxcode,
         .hgxcode {
@@ -79,17 +92,29 @@ p {
     }
 }
 
+.block {
+    display: block;
+    width: 100%;
+    font-size: 12px;
+}
+
+.center {
+    text-align: center;
+}
+
 .polynomialPower {
     vertical-align: super;
     font-size: 10px;
 }
 
 .hgxSection {
-    width: 250px;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    border-bottom: 2px solid black;
+    padding-bottom: 12px;
     .hgxcodes {
-        margin: 5px 0;
+        margin: 5px;
         display: flex;
         flex-direction: row-reverse;
         .hgxcode {
@@ -115,6 +140,23 @@ p {
             }
         }
     }
+}
+
+.finalBeforeTacts {
+    font-size: 18px;
+    margin: 5px 25px;
+    line-height: 23px;
+    height: 23px;
+    display: block;
+}
+
+.topMargin {
+    margin-top: -15px;
+}
+
+.graphClass {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 @-webkit-keyframes blink {
