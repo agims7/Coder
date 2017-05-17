@@ -26,7 +26,10 @@ export class AppService {
   public htmlFlipFlopFive: boolean = false;
   public htmlFlipFlopSix: boolean = false;
 
+  public visibility: boolean = false;
+
   public input: any = 0;
+  public oldInput: any = 0;
 
   constructor() {
   }
