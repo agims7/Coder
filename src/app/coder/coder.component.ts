@@ -106,6 +106,9 @@ export class CoderComponent implements OnInit {
     this.tactsService.tactActive = 0
     this.tactsService.P = [0, 0, 0, 0, 0];
     this.tactsService.output = 0;
+    this.tactsService.finalCxforListing = [];
+    this.tactsService.oldOutput = 0;
+    this.appService.oldInput = 0;
   }
 
   checkPolynomialRatio() {
@@ -292,7 +295,12 @@ export class CoderComponent implements OnInit {
     this.tactsService.output = 0;
     this.tactsService.switch = false;
     
+    this.tactsService.finalCxforListing = [];
+    this.tactsService.oldOutput = 0;
+    this.appService.oldInput = 0;
     this.finalPolynomialBeforeTacts = "";
+    this.appService.polynomialBinaryScopeCx = [];
+    this.appService.finalPolynomial = '';
 
     this.resetPolynomialFlipFlops();
   }
