@@ -1,9 +1,9 @@
 <div class="coderInput">
 
   <div class="leftSide">
-    <h3 class="title">Wielomian informacyjny h(x):</h3>
+    <h3 class="title">Wielomian informacyjny m(x):</h3>
 
-    <h4>Wpisz wielomian informacyjny h(x):</h4>
+    <h4>Wpisz wielomian informacyjny m(x):</h4>
 
     <input type="text" placeholder="x^9+x^5+x^2+1" [(ngModel)]="inputHx" />
     <button (click)="updateVariablesHx()">Przelicz</button>
@@ -32,7 +32,7 @@
 
 
     <div class="hxSection">
-      <p class="block">Słowo h(x):</p>
+      <p class="block">Słowo m(x):</p>
       <div class="hxcodes">
         <span class="hxcode" *ngFor="let item of appService.selectedBinaryScopeHx; let x = index">
     {{item}}
@@ -82,13 +82,13 @@
 </div>
 
 <div class="block center topMargin">
-<button type="submit" (click)="checkPolynomialRatio()">Sprawdz słowo hg(x)</button>
+<button type="submit" (click)="checkPolynomialRatio()">Sprawdz słowo mg(x)</button>
 
 <button type="reset" (click)="resetAll()">Reset</button>
 </div>
 
 <div *ngIf="visibility" class="hgxSection">
-  <p>Słowo h<span class="polynomialPower">g</span> (x):</p>
+  <p>Słowo m<span class="polynomialPower">g</span> (x):</p>
   <div class="hgxcodes">
     <span class="hgxcode" *ngFor="let item of polynomialHGxbeforeTacts; let x = index">
     {{item}}

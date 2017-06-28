@@ -25,7 +25,7 @@ export class CoderComponent implements OnInit {
   private newGxValue: string[];
   private max: number;
   private wrongPolynomial: boolean = false;
-  
+
   private polynomialHGxbeforeTacts: any;
   private finalPolynomialBeforeTacts: any;
 
@@ -160,7 +160,7 @@ export class CoderComponent implements OnInit {
     this.checkPolynomialFlipFlops();
   }
 
-    getFinalPolynomialBeforeTacts() {
+  getFinalPolynomialBeforeTacts() {
     this.finalPolynomialBeforeTacts = "";
     let lastElement = this.polynomialHGxbeforeTacts.length - 1;
     for (let i = lastElement; i >= 0; i--) {
@@ -174,7 +174,7 @@ export class CoderComponent implements OnInit {
         }
       }
     }
-    this.finalPolynomialBeforeTacts = this.finalPolynomialBeforeTacts.slice(0,this.finalPolynomialBeforeTacts.length - 1);
+    this.finalPolynomialBeforeTacts = this.finalPolynomialBeforeTacts.slice(0, this.finalPolynomialBeforeTacts.length - 1);
   }
 
   checkPolynomialRatioForHTML() {
@@ -229,31 +229,31 @@ export class CoderComponent implements OnInit {
       console.log('jest ponad 2')
       if (this.appService.selectedBinaryScopeGx[1] === '1') {
         this.appService.htmlFlipFlopThree = true;
-        console.log('3 true',this.appService.selectedBinaryScopeGx[1] )
+        console.log('3 true', this.appService.selectedBinaryScopeGx[1])
       }
     }
     if (this.appService.polynomialGx > 3) {
       console.log('jest ponad 3')
       if (this.appService.selectedBinaryScopeGx[2] === '1') {
         this.appService.htmlFlipFlopFour = true;
-        console.log('4 true',this.appService.selectedBinaryScopeGx[1] )
+        console.log('4 true', this.appService.selectedBinaryScopeGx[1])
       }
     }
     if (this.appService.polynomialGx > 4) {
       console.log('jest ponad 4')
       if (this.appService.selectedBinaryScopeGx[3] === '1') {
         this.appService.htmlFlipFlopFive = true;
-        console.log('5 true',this.appService.selectedBinaryScopeGx[1] )
+        console.log('5 true', this.appService.selectedBinaryScopeGx[1])
       }
     }
     if (this.appService.polynomialGx > 5) {
       console.log('jest ponad 5')
       if (this.appService.selectedBinaryScopeGx[4] === '1') {
         this.appService.htmlFlipFlopSix = true;
-        console.log('6 true',this.appService.selectedBinaryScopeGx[1] )
+        console.log('6 true', this.appService.selectedBinaryScopeGx[1])
       }
     }
-    console.log(this.appService.htmlFlipFlopThree,  this.appService.htmlFlipFlopFour,  this.appService.htmlFlipFlopFive, this.appService.htmlFlipFlopSix);
+    console.log(this.appService.htmlFlipFlopThree, this.appService.htmlFlipFlopFour, this.appService.htmlFlipFlopFive, this.appService.htmlFlipFlopSix);
   }
 
   resetPolynomialFlipFlops() {
@@ -294,7 +294,7 @@ export class CoderComponent implements OnInit {
     this.tactsService.P = [0, 0, 0, 0, 0];
     this.tactsService.output = 0;
     this.tactsService.switch = false;
-    
+
     this.tactsService.finalCxforListing = [];
     this.tactsService.oldOutput = 0;
     this.appService.oldInput = 0;
@@ -442,7 +442,6 @@ export class CoderComponent implements OnInit {
       return this.result;
     }
   }
-
 
   ngOnInit() {
     // this.appService.updateTitle('Coder setup');

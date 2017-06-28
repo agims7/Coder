@@ -1,6 +1,10 @@
 <div id=parrent>
   <p id="input">Wejście:</p>
-  <p id="inputValue" class="red">{{ appService.input }}</p>
+  <div id="inputValue" class="red cxcodes">
+    <span class="cxcode" *ngFor="let item of appService.inputScopeForGraph; let x = index">
+    {{ item }}
+    </span>
+  </div>
   <p id="output">Wyjście:</p>
   <p id="outputValue" class="red">{{ tactsService.output }}</p>
   <p id="outputCoder">Wyjście - koder:</p>
@@ -19,6 +23,7 @@
       <div class="arrowUpSecond"></div>
     </div>
     <div id="firstSmallDot" class="smalldots"></div>
+    <div id="firstSmallDot2" class="smalldotsEnd"></div>
   </div>
   <div class="endVertical endVerticalLineBottom2">
     <div class="arrow arrowRight1">
@@ -58,17 +63,6 @@
     <div class="arrowRightFirst"></div>
     <div class="arrowRightSecond"></div>
   </div>
-  <div id="firstCircle" class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">0</span>
-    <div class="outputFlipFlopValueLeft">{{ tactsService.oldOutput }}</div>
-    <div class="outputBeforeFlipFlopValueLeft">{{ appService.oldInput }}</div>
-    <div class="arrow arrowFirstLeft">
-      <div class="arrowBottomFirst"></div>
-      <div class="arrowBottomSecond"></div>
-    </div>
-  </div>
-  <div id="lastCircleTop" class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">5</span>
-    <div class="outputFlipFlopValueRight">{{ tactsService.oldOutput }}</div>
-  </div>
   <div id="lastCircleBottom" class="circle flipFlop centerCircle">+</div>
   <div id="finish" class="arrow">
     <div class="arrowRightFirst"></div>
@@ -84,16 +78,10 @@
     <p class="description">P<span class="flipFlopPower">0</span></p>
   </div>
   <div *ngIf="appService.htmlRatioThree && appService.htmlFlipFlopThree" id="secondLine">
-    <div class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">1</span></div>
-    <div class="outputFlipFlopValue">{{ tactsService.oldOutput }}</div>
-    <div class="outputBeforeFlipFlopValue">{{ tactsService.oldP[0] }}</div>
+    <div class="outputFlipFlopValue">{{ tactsService.output }}</div>
     <div class="smallCircle"></div>
     <div class="verticalLine"></div>
     <div class="circleInside centerCircle">+</div>
-    <div class="arrow arrowTop">
-      <div class="arrowBottomFirst"></div>
-      <div class="arrowBottomSecond"></div>
-    </div>
     <div class="arrow">
       <div class="arrowBottomFirst"></div>
       <div class="arrowBottomSecond"></div>
@@ -103,16 +91,10 @@
     <p class="description">P<span class="flipFlopPower">1</span></p>
   </div>
   <div *ngIf="appService.htmlRatioFour && appService.htmlFlipFlopFour" id="thirdLine">
-    <div class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">2</span></div>
-    <div class="outputFlipFlopValue">{{ tactsService.oldOutput }}</div>
-    <div class="outputBeforeFlipFlopValue">{{ tactsService.oldP[1] }}</div>
+    <div class="outputFlipFlopValue">{{ tactsService.output }}</div>
     <div class="smallCircle"></div>
     <div class="verticalLine"></div>
     <div class="circleInside centerCircle">+</div>
-    <div class="arrow arrowTop">
-      <div class="arrowBottomFirst"></div>
-      <div class="arrowBottomSecond"></div>
-    </div>
     <div class="arrow">
       <div class="arrowBottomFirst"></div>
       <div class="arrowBottomSecond"></div>
@@ -122,16 +104,10 @@
     <p class="description">P<span class="flipFlopPower">2</span></p>
   </div>
   <div *ngIf="appService.htmlRatioFive && appService.htmlFlipFlopFive" id="fourthLine">
-    <div class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">3</span></div>
-    <div class="outputFlipFlopValue">{{ tactsService.oldOutput }}</div>
-    <div class="outputBeforeFlipFlopValue">{{ tactsService.oldP[2] }}</div>
+    <div class="outputFlipFlopValue">{{ tactsService.output }}</div>
     <div class="smallCircle"></div>
     <div class="verticalLine"></div>
     <div class="circleInside centerCircle">+</div>
-    <div class="arrow arrowTop">
-      <div class="arrowBottomFirst"></div>
-      <div class="arrowBottomSecond"></div>
-    </div>
     <div class="arrow">
       <div class="arrowBottomFirst"></div>
       <div class="arrowBottomSecond"></div>
@@ -141,16 +117,10 @@
     <p class="description">P<span class="flipFlopPower">3</span></p>
   </div>
   <div *ngIf="appService.htmlRatioSix && appService.htmlFlipFlopSix" id="fifthLine">
-    <div class="circle flipFlop"><span class="gElement">G</span><span class="flipFlopPower">4</span></div>
-    <div class="outputFlipFlopValue">{{ tactsService.oldOutput }}</div>
-    <div class="outputBeforeFlipFlopValue">{{ tactsService.oldP[3] }}</div>
+    <div class="outputFlipFlopValue">{{ tactsService.output }}</div>
     <div class="smallCircle"></div>
     <div class="verticalLine"></div>
     <div class="circleInside centerCircle">+</div>
-    <div class="arrow arrowTop">
-      <div class="arrowBottomFirst"></div>
-      <div class="arrowBottomSecond"></div>
-    </div>
     <div class="arrow">
       <div class="arrowBottomFirst"></div>
       <div class="arrowBottomSecond"></div>

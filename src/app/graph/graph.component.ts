@@ -76,6 +76,7 @@ export class GraphComponent implements OnInit {
     let finalArray = this.appService.polynomialBinaryScopeCx.reverse();
     this.tactsService.outputCoderFull = this.copy(finalArray);
     this.resetAfterCalculation();
+    this.setinputScopeForGraph();
   }
 
   calculateAll() {
@@ -695,7 +696,16 @@ export class GraphComponent implements OnInit {
 
       this.tactsService.finalCxforListing.push(this.tactsService.outputCoder);
       console.log('this.tactsService.finalCxforListing', this.tactsService.finalCxforListing)
+
     }
+
+    if (this.appService.inputScopeForGraph) {
+      this.appService.inputScopeForGraph.shift();
+      if (this.appService.inputScopeForGraph.length === 0) {
+        this.appService.inputScopeForGraph.push('0');
+      }
+    }
+
 
     this.disableButton();
 
@@ -708,13 +718,18 @@ export class GraphComponent implements OnInit {
       this.clearOutput();
       this.getFinalPolynomial();
       this.visibility = true;
+      this.appService.inputScopeForGraph = [];
       this.logInfo();
     }
 
     this.logInfo()
   }
 
-
+  setinputScopeForGraph() {
+    this.appService.inputScopeForGraph = [];
+    this.appService.inputScopeForGraph = this.copy(this.appService.selectedBinaryScopeHx);
+    this.appService.inputScopeForGraph.reverse();
+  }
 
   getFinalPolynomial() {
     this.appService.finalPolynomial = "";

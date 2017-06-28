@@ -1,6 +1,6 @@
 <div class="leftSideNarrow">
     <button [hidden]="buttonDisabled" class="nextTact" type="submit" (click)="nextTact()">Takt +1</button>
-    <button [hidden]="buttonDisabled" class="nextTact" type="submit" (click)="calculateAll()">Full calculation</button>
+    <button [hidden]="buttonDisabled" class="nextTact" type="submit" (click)="calculateAll()">Pełna symulacja</button>
 
     <table *ngIf="appService.polynomialRatioGx === 1">
         <tr>
@@ -109,7 +109,6 @@
 
     <div class="marginTop">
         <p class="blue"> 0/1 -> wartość na wyjściu</p>
-        <p class="green">0/1 -> wartość poprzednia rejestru</p>
     </div>
 
     <div *ngIf="visibility" class="cxSection">

@@ -14,21 +14,24 @@
   font-size: 30px;
 }
 .topLine {
-  width: 465px;
+  width: 500px;
   border: 2px solid black;
   top: 20px;
   left: 100px;
+  background-color: black;
 }
 .bottomLine {
   width: 500px;
   border: 2px solid black;
   top: 150px;
   left: 99px;
+  background-color: black;
 }
 .verticalLine {
   height: 130px;
   border: 2px solid black;
   top: 20px;
+  background-color: black;
 }
 .smallCircle {
   width: 11px;
@@ -56,8 +59,21 @@
   background-color: white;
   z-index: 3;
 }
+.smalldotsEnd {
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  border: 2px solid black;
+  left: 21px;
+  top: 17px;
+  background-color: white;
+  z-index: 3;
+}
 #firstSmallDot {
   top: 14px;
+}
+#firstSmallDot2 {
+  top: 30px;
 }
 #secondSmallDot {
   top: -6px;
@@ -78,25 +94,25 @@
   width: 33px;
   height: 2px;
   background-color: black;
-  top: -3px;
-  right: 0px;
-  transform-origin: 100% 100%;
-  transform: rotate(50deg);
+  top: -37px;
+  right: -32px;
+  transform-origin: 0% 100%;
+  transform: rotate(90deg);
 }
 .switchLine1On {
-  transform: rotate(7deg);
+  transform: rotate(30deg);
 }
 .switchLine2 {
   height: 33px;
   width: 2px;
   background-color: black;
-  top: -30px;
-  left: 44px;
-  transform-origin: 100% 100%;
-  transform: rotate(50deg);
+  top: -50px;
+  left: 69px;
+  transform-origin: 0% 100%;
+  transform: rotate(-130deg);
 }
 .switchLine2On {
-  transform: rotate(0deg);
+  transform: rotate(-58deg);
 }
 #finishDot1 {
   left: -4px;
@@ -125,58 +141,70 @@
   border: 2px solid black;
   left: 600px;
   top: 20px;
+  background-color: black;
 }
 .endVerticalTop {
   border: 2px solid black;
-  left: 565px;
+  left: 600px;
   top: 20px;
+  background-color: black;
 }
 .endVerticalLineTop {
   height: 17px;
+  background-color: black;
 }
 .endVerticalLineBottom1 {
   height: 15px;
-  top: 70px;
+  top: 40px;
+  background-color: black;
 }
 .endVerticalLineBottom2 {
   height: 40px;
   top: 95px;
+  background-color: black;
 }
 .endVerticalLineBottom3 {
   height: 20px;
   top: 168px;
+  background-color: black;
 }
 .endVerticalLineBottom4 {
-  height: 27px;
+  height: 11px;
   top: 197px;
+  background-color: black;
 }
 #inputHorizontalLine1 {
   width: 50px;
   border: 2px solid black;
-  top: 27px;
+  top: 11px;
   left: -52px;
+  background-color: black;
 }
 #inputHorizontalLine2 {
   width: 40px;
   border: 2px solid black;
   top: 22px;
   left: 0px;
+  background-color: black;
 }
 #inputHorizontalLine3 {
   width: 40px;
   border: 2px solid black;
   top: 18px;
   left: 0px;
+  background-color: black;
 }
 #bottomEndOutput {
   left: 43px;
   top: 0px;
   height: 22px;
+  background-color: black;
 }
 #topEndOutput {
   left: 43px;
   top: 18px;
   height: 22px;
+  background-color: black;
 }
 .arrow {
   position: relative;
@@ -189,24 +217,25 @@
   left: 12px;
 }
 #input {
-  top: 195px;
-  left: 515px;
+  top: 216px;
+  left: 492px;
 }
 #inputValue {
-  top: 189px;
-  left: 570px;
+  top: 211px;
+  left: 543px;
+  width: 125px;
 }
 #start {
   top: 140px;
   left: 140px;
 }
 #output {
-  top: 64px;
-  left: 600px;
+  top: 92px;
+  left: 617px;
 }
 #outputValue {
-  top: 58px;
-  left: 655px;
+  top: 87px;
+  left: 670px;
 }
 #outputCoder {
   width: 110px;
@@ -239,6 +268,7 @@
   left: 7px;
   border: 1px solid black;
   transform: rotate(35deg);
+  background-color: black;
 }
 .arrowRightSecond {
   width: 10px;
@@ -246,6 +276,7 @@
   left: 7px;
   border: 1px solid black;
   transform: rotate(-35deg);
+  background-color: black;
 }
 .arrowBottomFirst {
   width: 17px;
@@ -253,6 +284,7 @@
   top: 129px;
   border: 1px solid black;
   transform: rotate(55deg);
+  background-color: black;
 }
 .arrowBottomSecond {
   width: 17px;
@@ -260,6 +292,7 @@
   top: 129px;
   border: 1px solid black;
   transform: rotate(-55deg);
+  background-color: black;
 }
 .arrowUpFirst {
   width: 10px;
@@ -267,6 +300,7 @@
   top: 2px;
   border: 1px solid black;
   transform: rotate(-55deg);
+  background-color: black;
 }
 .arrowUpSecond {
   width: 10px;
@@ -274,6 +308,7 @@
   top: 2px;
   border: 1px solid black;
   transform: rotate(55deg);
+  background-color: black;
 }
 .arrowRight1 {
   top: 5px;
@@ -401,22 +436,6 @@
   color: blue;
   top: -22px;
   left: 21px;
-  font-weight: bold;
-  font-size: 15px;
-}
-
-.outputBeforeFlipFlopValue {
-  color: green;
-  top: 124px;
-  left: -17px;
-  font-weight: bold;
-  font-size: 15px;
-}
-
-.outputBeforeFlipFlopValueLeft {
-  color: green;
-  top: 19px;
-  left: 26px;
   font-weight: bold;
   font-size: 15px;
 }
